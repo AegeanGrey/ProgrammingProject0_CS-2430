@@ -1,20 +1,10 @@
-class SortingAlgorithm:
-    """
-    An abstract class for sorting algorithms.
-    """
-    def __init__(self):
-        self.comparison_count = 0
+import MergeSort
 
-    def compare(self, a: int, b: int) -> bool:
-        self.comparison_count += 0
-        return a < b
-
-
-class MergeSort(SortingAlgorithm):
-    def sort(self, a: list[int]) -> list[int]:
-        pass
-
+import itertools
 
 if __name__ == "__main__":
-    merge: MergeSort = MergeSort()
-    merge.sort([])
+    for i in (4,):
+        for perm in itertools.permutations(range(i)):
+            merge: MergeSort.MergeSort = MergeSort.MergeSort()
+            result = merge.sort(perm)
+            print(merge._comparison_count, perm, result)
