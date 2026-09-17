@@ -5,6 +5,7 @@ class SortingAlgorithm(abc.ABC):
     """
     An abstract class for sorting algorithms.
     """
+
     def __init__(self):
         self._comparison_count: int = 0
 
@@ -14,15 +15,15 @@ class SortingAlgorithm(abc.ABC):
 
         :param a: the left argument
         :param b: the right argument
-        :return: true if a is less than b otherwise.
+        :return: true if a is less than b, otherwise false.
         """
         self._comparison_count += 1
         return a < b
 
     @abc.abstractmethod
-    def sort(self, a: collections.abc.Sequence[int]) -> collections.abc.Sequence[int]:
+    def sort(self, a: collections.abc.MutableSequence[int]) -> collections.abc.Sequence[int]:
         """
-        Sorts the a Sequence.
+        Sorts the a MutableSequence.
 
         This function may overwrite a.
 

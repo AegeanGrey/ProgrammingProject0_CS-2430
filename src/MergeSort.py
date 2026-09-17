@@ -6,6 +6,7 @@ class MergeSort(SortingAlgorithm.SortingAlgorithm):
     """
     A class that implements the mergesort algorithm.
     """
+
     def _merge(self, l: collections.abc.Iterable[int], r: collections.abc.Iterable[int]) -> collections.abc.Iterable[int]:
         """
         Merges two sorted iterables.
@@ -38,7 +39,7 @@ class MergeSort(SortingAlgorithm.SortingAlgorithm):
                 yield l_next
                 l_next = next(l_iter, None)
 
-    def sort(self, a: collections.abc.Sequence[int]) -> collections.abc.Sequence[int]:
+    def sort(self, a: collections.abc.MutableSequence[int]) -> collections.abc.Sequence[int]:
         # Transform the sequence into the format in which it will be processed: a two-dimensional, jagged list.
         a: list[collections.abc.Iterable[int]] = [[number] for number in a]
         # Sort the two-dimensional iterable. We are done when only one iterable is left.
