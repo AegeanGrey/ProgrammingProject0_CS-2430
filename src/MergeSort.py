@@ -1,3 +1,10 @@
+###################################
+# Coding Cadets                   #
+# Thaddeus Schelp, Todd Dharni    #
+# CS2430, section                 #
+# Programming Project 1           #
+# Primary Author: Thaddeus Schelp #
+###################################
 import SortingAlgorithm
 
 import collections
