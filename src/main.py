@@ -14,6 +14,16 @@ import SortingAlgorithm
 import itertools
 
 if __name__ == "__main__":
+    if len(sys.argv) == 1 or "--help" in sys.argv or "-h" in sys.argv:
+        print("""    python3 main.py sample_set [algorithms*]
+        
+    sample_set:
+        Comma separated list of integers. For each integer in the CSV list an array of that size is made and every permutation of elements in that array is sorted by every listed algorithm.
+        
+    Algorithms:
+        --mergesort  runs the mergesort algorithm
+        --heapsort   runs the heapsort algorithm""")
+        exit()
     # validate arguments
     invalid_argument: bool = False
     try:
