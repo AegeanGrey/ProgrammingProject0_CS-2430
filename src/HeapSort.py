@@ -1,7 +1,7 @@
 ###################################
 # Coding Cadets                   #
 # Thaddeus Schelp, Todd Dharni    #
-# CS2430, section                 #
+# CS2430                          #
 # Programming Project 1           #
 # Primary Author: Thaddeus Schelp #
 ###################################

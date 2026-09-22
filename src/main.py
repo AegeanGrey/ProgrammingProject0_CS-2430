@@ -1,17 +1,16 @@
 ###################################
 # Coding Cadets                   #
 # Thaddeus Schelp, Todd Dharni    #
-# CS2430, section                 #
+# CS2430                          #
 # Programming Project 1           #
 # Primary Author: Thaddeus Schelp #
 ###################################
-import sys
-
 import HeapSort
 import MergeSort
 import SortingAlgorithm
 
 import itertools
+import sys
 
 if __name__ == "__main__":
     if len(sys.argv) == 1 or "--help" in sys.argv or "-h" in sys.argv:
