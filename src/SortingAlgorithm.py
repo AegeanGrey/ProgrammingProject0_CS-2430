@@ -1,10 +1,10 @@
-###################################
-# Coding Cadets                   #
-# Thaddeus Schelp, Todd Dharni    #
-# CS2430                          #
-# Programming Project 1           #
-# Primary Author: Thaddeus Schelp #
-###################################
+################################################
+# Coding Cadets                                #
+# Thaddeus Schelp, Todd Dharni, Brayden Graham #
+# CS2430                                       #
+# Programming Project 1                        #
+# Primary Author: Thaddeus Schelp              #
+################################################
 import abc
 import collections
 

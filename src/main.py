@@ -1,10 +1,10 @@
-###################################
-# Coding Cadets                   #
-# Thaddeus Schelp, Todd Dharni    #
-# CS2430                          #
-# Programming Project 1           #
-# Primary Author: Thaddeus Schelp #
-###################################
+################################################
+# Coding Cadets                                #
+# Thaddeus Schelp, Todd Dharni, Brayden Graham #
+# CS2430                                       #
+# Programming Project 1                        #
+# Primary Author: Thaddeus Schelp              #
+################################################
 import HeapSort
 import MergeSort
 import SortingAlgorithm
@@ -15,10 +15,10 @@ import sys
 if __name__ == "__main__":
     if len(sys.argv) == 1 or "--help" in sys.argv or "-h" in sys.argv:
         print("""    python3 main.py sample_set [algorithms*]
-        
+
     sample_set:
         Comma separated list of integers. For each integer in the CSV list an array of that size is made and every permutation of elements in that array is sorted by every listed algorithm.
-        
+
     Algorithms:
         --mergesort  runs the mergesort algorithm
         --heapsort   runs the heapsort algorithm""")
