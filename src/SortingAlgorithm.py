@@ -16,7 +16,7 @@ class SortingAlgorithm(abc.ABC):
     def __init__(self):
         self._comparison_count: int = 0
 
-    def compare(self, a: int, b: int) -> bool:
+    def compareLeast(self, a: int, b: int) -> bool:
         """
         Compares a and b and keeps track of the total number of compares.
 

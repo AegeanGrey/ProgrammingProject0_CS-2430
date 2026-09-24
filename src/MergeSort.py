@@ -30,7 +30,7 @@ class MergeSort(SortingAlgorithm.SortingAlgorithm):
         # Forward elements from both iterables until one is exhausted.
         while l_next is not None and r_next is not None:
             # Choose to forward elements from either the left or right iterable depending on which is smaller.
-            if self.compare(l_next, r_next):
+            if self.compareLeast(l_next, r_next):
                 yield l_next
                 l_next = next(l_iter, None)
             else:

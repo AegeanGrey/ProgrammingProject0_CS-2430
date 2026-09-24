@@ -29,9 +29,9 @@ class HeapSort(SortingAlgorithm.SortingAlgorithm):
             left: int = node * 2 + 1
             right: int = left + 1
             # Set largest to the index of the largest value of node, and its left and right children
-            if left < unsorted_size and self.compare(a[largest], a[left]):
+            if left < unsorted_size and self.compareLeast(a[largest], a[left]):
                 largest = left
-            if right < unsorted_size and self.compare(a[largest], a[right]):
+            if right < unsorted_size and self.compareLeast(a[largest], a[right]):
                 largest = right
             # End case: We have
             if largest == node: break
