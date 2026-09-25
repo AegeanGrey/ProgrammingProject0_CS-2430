@@ -8,6 +8,7 @@
 import HeapSort
 import MergeSort
 import QuickSort
+import ShakerSort
 import SortingAlgorithm
 
 import itertools
@@ -44,7 +45,8 @@ def main():
     algorithms:
         --mergesort  includes tests for the mergesort algorithm
         --heapsort   includes tests for the heapsort algorithm
-        --quicksort  includes tests for the quicksort algorithm""")
+        --quicksort  includes tests for the quicksort algorithm
+        --shakersort includes tests for the shakersort algorithm""")
         exit()
     # validate arguments
     invalid_argument: bool = False
@@ -58,7 +60,8 @@ def main():
     for arg in sys.argv[2:]:
         if arg != "--mergesort" and \
            arg != "--heapsort" and \
-           arg != "--quicksort":
+           arg != "--quicksort" and \
+           arg != "--shakersort":
             print(f"Invalid argument: '{arg}'", file=sys.stderr)
             invalid_argument = True
     # if all arguments are valid, test each sorting algorithm against the sample set
@@ -73,6 +76,9 @@ def main():
             elif arg == "--quicksort":
                 print("==================== Quick Sort ====================")
                 _analyze(sample_set, QuickSort.QuickSort)
+            elif arg == "--shakersort":
+                print("==================== Shaker Sort ====================")
+                _analyze(sample_set, ShakerSort.ShakerSort)
 
 
 if __name__ == "__main__":

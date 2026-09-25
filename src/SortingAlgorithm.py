@@ -27,6 +27,17 @@ class SortingAlgorithm(abc.ABC):
         self._comparison_count += 1
         return a < b
 
+    def compareMost(self, a: int, b: int) -> bool:
+        """
+        Compares a and b and keeps track of the total number of compares.
+
+        :param a: the left argument
+        :param b: the right argument
+        :return: true if a is greater than b, otherwise false.
+        """
+        self._comparison_count += 1
+        return a > b
+
     @abc.abstractmethod
     def sort(self, a: collections.abc.MutableSequence[int]) -> collections.abc.Sequence[int]:
         """
