@@ -7,21 +7,44 @@
 ################################################
 import HeapSort
 import MergeSort
+import QuickSort
 import SortingAlgorithm
 
 import itertools
 import sys
 
-if __name__ == "__main__":
+def _analyze(sample_set: tuple[int], algorithm: type):
+    for i in range(len(sample_set)):
+        result_i: list[int] = []
+        for perm in itertools.permutations(range(sample_set[i])):
+            algo: SortingAlgorithm.SortingAlgorithm = algorithm()
+            algo.sort([*perm])
+            result_i.append(algo._comparison_count)
+
+        indices: list[int] = sorted(range(len(result_i)), key=lambda k: result_i[k])
+        best: list[int] = sorted(indices[:10])
+        worst: list[int] = sorted(indices[-10:])
+        permutations: tuple[tuple[int]] = tuple(itertools.permutations(range(sample_set[i])))
+        length: int = len(str(permutations[0]))
+        print(f"Permutations of {sample_set[i]} elements")
+        print(f"\t    Total number of cases : {len(result_i)}")
+        print(f"\t     Worst compare counts : {" | ".join(" "*(length - len(str(j))) + str(j) for j in (result_i[j] for j in worst))}")
+        print(f"\t              Worst cases : {" | ".join(" "*(length - len(str(permutations[j]))) + str(permutations[j]) for j in worst)}")
+        print(f"\t      Best compare counts : {" | ".join(" "*(length - len(str(j))) + str(j) for j in (result_i[j] for j in best))}")
+        print(f"\t               Best cases : {" | ".join(" "*(length - len(str(permutations[j]))) + str(permutations[j]) for j in best)}")
+
+
+def main():
     if len(sys.argv) == 1 or "--help" in sys.argv or "-h" in sys.argv:
         print("""    python3 main.py sample_set [algorithms*]
 
     sample_set:
         Comma separated list of integers. For each integer in the CSV list an array of that size is made and every permutation of elements in that array is sorted by every listed algorithm.
 
-    Algorithms:
-        --mergesort  runs the mergesort algorithm
-        --heapsort   runs the heapsort algorithm""")
+    algorithms:
+        --mergesort  includes tests for the mergesort algorithm
+        --heapsort   includes tests for the heapsort algorithm
+        --quicksort  includes tests for the quicksort algorithm""")
         exit()
     # validate arguments
     invalid_argument: bool = False
@@ -34,7 +57,8 @@ if __name__ == "__main__":
     # ensure only implemented sorting algorithms were requested
     for arg in sys.argv[2:]:
         if arg != "--mergesort" and \
-           arg != "--heapsort":
+           arg != "--heapsort" and \
+           arg != "--quicksort":
             print(f"Invalid argument: '{arg}'", file=sys.stderr)
             invalid_argument = True
     # if all arguments are valid, test each sorting algorithm against the sample set
@@ -42,15 +66,14 @@ if __name__ == "__main__":
         for arg in sys.argv[2:]:
             if arg == "--mergesort":
                 print("==================== Merge Sort ====================")
-                for i in sample_set:
-                    for perm in itertools.permutations(range(i)):
-                        algo: SortingAlgorithm.SortingAlgorithm = MergeSort.MergeSort()
-                        result = algo.sort([*perm])
-                        print(algo._comparison_count, perm, result)
+                _analyze(sample_set, MergeSort.MergeSort)
             elif arg == "--heapsort":
                 print("==================== Heap Sort ====================")
-                for i in sample_set:
-                    for perm in itertools.permutations(range(i)):
-                        algo: SortingAlgorithm.SortingAlgorithm = HeapSort.HeapSort()
-                        result = algo.sort([*perm])
-                        print(algo._comparison_count, perm, result)
+                _analyze(sample_set, HeapSort.HeapSort)
+            elif arg == "--quicksort":
+                print("==================== Quick Sort ====================")
+                _analyze(sample_set, QuickSort.QuickSort)
+
+
+if __name__ == "__main__":
+    main()
