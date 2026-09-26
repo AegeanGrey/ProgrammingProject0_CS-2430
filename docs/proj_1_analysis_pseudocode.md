@@ -1,5 +1,5 @@
 In the below pseudocode:
-- Each sorting_algorithm is expected to inherit from `SortingAlgorithm` as shown in the classDiagram.md file.
+- Each sorting_algorithm is expected to inherit from `SortingAlgorithm` as shown in the proj_1_architecture.md file.
 - The permutations are generated using Python's builtin `itertools.permutations`.
 
 ```pseudo
