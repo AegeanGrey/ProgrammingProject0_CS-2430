@@ -85,7 +85,7 @@ Documenting / Reporting on QS and SS Algorithms (in progress)<br>
 Video Recording Structure (in progress)<br>
 <br>
 --- Brayden Graham --- <br>
-UML/Structure Diagram (done)<br>
+UML/Structure Diagram (<a href="https://github.com/AegeanGrey/ProgrammingProject0_CS-2430/commit/1ef1e78fdf6954b077b7f49d36ecd96b46609f0e">done</a>)<br>
 </p>
 
 ### 6 Verification Plan
