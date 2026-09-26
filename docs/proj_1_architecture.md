@@ -9,25 +9,24 @@ classDiagram
         - comaparison_count int
         + compareLeast(int a, int b) bool
         + compareMost(int a, int b) bool
-        + sort(MutableSequence~int~ a)* Sequence~int}~
+        + sort(MutableSequence~int~ a)* Sequence~int}~ None
     }
 
     class MergeSort {
-        - merge (Iterable int~ l, Iterable~List~Int~~ r) Iterable~int~
+        - merge (Iterable~List~int~~ l, Iterable~List~int~~ r) Iterable~List~int~~
     }
     
     class HeapSort{
-        - heapify (MutableSequence~int~ a, int node, int unsorted_size)
+        - heapify (MutableSequence~List~int~~ a, int node, int unsorted_size) None
         
     }
     
     class QuickSort{
-        - quickSort(~int~ array, int start, int end)
-        - partition(~int~ array, int start, int end)
+        - quickSort(~List~int~~ array, int start, int end) None
+        - partition(~List~int~~ array, int start, int end) int
     }
     
     class ShakerSort{
-        - shakerSort(~int~ array, int start, int end)
-        - 
+        - shakerSort(~List~int~~ array) None
     }
 ```

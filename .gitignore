@@ -1,3 +1,10 @@
 .idea/
 .venv/
 uv.lock
+
+# Zed Editor Files
+.zed/
+.zed
+
+# Python file cache
+src/__pycache__
