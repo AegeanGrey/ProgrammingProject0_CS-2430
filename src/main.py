@@ -24,8 +24,8 @@ def _analyze(sample_set: tuple[int], algorithm: type):
 
         indices: list[int] = sorted(range(len(result_i)), key=lambda k: result_i[k])
         average: float = sum(result_i) / len(result_i)
-        best: list[int] = sorted(indices[:10])
-        worst: list[int] = sorted(indices[-10:])
+        best: list[int] = sorted(indices[:10], key=lambda k: result_i[k])
+        worst: list[int] = sorted(indices[-10:], key=lambda k: result_i[k])
         permutations: tuple[tuple[int]] = tuple(itertools.permutations(range(sample_set[i])))
         length: int = len(str(permutations[0]))
         print(f"Permutations of {sample_set[i]} elements")
