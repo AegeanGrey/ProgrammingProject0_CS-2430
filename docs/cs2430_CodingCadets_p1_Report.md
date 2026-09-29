@@ -633,6 +633,66 @@ One complication to this is the implementation of quicksort. While the others ha
 
 ---
 
+## Analysis
+
+### 1. Estimated Big-O, Big-Ω, and Big-Θ:
+
+#### Heapsort:
+
+Big-O: 
+
+Big-Ω: 
+
+Big-Θ: n(log)n
+
+Reasoning: 
+
+#### Mergsort:
+
+Big-O: 
+
+Big-Ω: 
+
+Big-Θ: 
+
+Reasoning: 
+
+#### Quicksort:
+
+Big-O: 
+
+Big-Ω: 
+
+Big-Θ: 
+
+Reasoning: 
+
+#### Shackersort:
+
+Big-O: 
+
+Big-Ω: 
+
+Big-Θ: 
+
+Reasoning: 
+
+### 2. Best and Worst case sensitivity:
+
+### 3. Number of comparisons for n=12:
+
+### 4. Best performing algorithm:
+
+Best: 
+
+Worst: 
+
+Average: 
+
+### 5. Why results may very:
+
+---
+
 ## Conclusion
 
 ### Reflection
@@ -642,4 +702,5 @@ One complication to this is the implementation of quicksort. While the others ha
 Todd introduced me to the idea of 'Who does What by When'. This is a useful way to think about organizing tasks and divvying them up. Making sure that you are actively aware of each of these Ws can help drive a team and keep them coordinated on tasks.
 
 #### Brayden Graham
-Thaddeus Introduced me to Mermaid for making diagrams directly in Markdown, which I see as a great tool that I can implement into both personal and work Projects going forward to help me better show and update charts in my documentation more frequently instead of using services like lucidchart. I was introduced to OOP in Python, which I didn't know was possible in that language, since I've avoided Python altogether in favor of lower-level, non-interpreted languages.
+
+Thaddeus Introduced me to Mermaid for making diagrams directly in Markdown, which I see as a great tool that I can implement into both personal and work projects going forward to help me better show and update charts in my documentation more frequently instead of using services like lucidchart. I was introduced to OOP in Python, which I didn't know was possible in that language, since I've avoided Python altogether in favor of lower-level, non-interpreted languages.

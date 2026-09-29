@@ -8,3 +8,9 @@ uv.lock
 
 # Python file cache
 src/__pycache__
+
+# Obsedian
+docs/.obsidian/
+
+# Apple
+.ds_store
