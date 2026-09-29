@@ -643,7 +643,7 @@ Big-O:
 
 Big-Ω: 
 
-Big-Θ: n(log)n
+Big-Θ: 
 
 Reasoning: 
 
