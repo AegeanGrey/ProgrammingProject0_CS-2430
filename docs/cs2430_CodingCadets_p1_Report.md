@@ -1,3 +1,66 @@
+# Coding Cadets CS 2430 Programming Project 1 Report 
+
+## Coding Cadets
+
+- Brayden Graham
+- Thaddeus Schelp
+- Todd Dharni
+
+---
+
+CS 2430, Semester 1, Programming Project 1
+
+## Introduction
+
+### Why Comparisons?
+
+Comparisons are not a good proxy for sorting algorithm performance. They are only a small part of the algorithm, and not always the most significant. This can be proven by comparing real performance data gathered with from a profiler with the speculative performance data gathered by comparison counting.
+
+---
+
+Here are the profiling results of running each of the algorithms on the permutations required by the project. In the flamegraphs below, each vertical layer represents a stack frame. Each horizontal block represents the total sum of time spent on that point in the stack. Larger horizontal blocks are positioned further to the left and represent more time spent. The labels on the blocks correspond to the names of the relevant functions. Note that the `sort` functions are where each algorithm begins, and therefore these are what are being referred to when discussing a particular algorithm. 
+
+![A profile snapshot showing that mergesort took longer than quicksort took longer than shakersort, took longer than heapsort.](profile_snapshot_0.png)
+
+Despite mergesort consistently having the fewest comparisons across all algorithms for any given permutation, it performs the worst by far. It spends >= ~600ms more than quicksort, the next slowest algorithm across multiple test runs.
+
+To further back up my claim, here is another profile snapshot. This snapshot was captured using a single run for each algorithm in which they each sorted one million elements. Shaker sort was left out because it took an unreasonable amount of time to finish.
+
+![A profile snapshot showing that mergesort took more time than quicksort which took more time than heapsort.](profile_snapshot_1.png)
+
+In the test that generated the above snapshot:
+
+| Algorithm  | Comparison Count |
+| ---------- | ---------------- |
+| Merge Sort | $18716082$       |
+| Quick Sort | $25517011$       |
+| Heap Sort  | $36792758$       |
+
+This clearly shows the discrepancy between comparison counts and actual performance even at large values of $N$. Mergesort still performs the worst, despite performing by far the fewest comparisons. Quicksort also performs worse than heapsort despite performing a fraction of the comparisons. Heapsort performs the best despite performing significantly more comparisons than any other algorithm.
+
+---
+
+Another argument against using comparisons is that because not all sorting algorithms use comparisons at all, using comparisons as a fundamental performance metric actually limits the types of algorithms that we can fairly analyze.
+
+#### What Comparisons *Are* Useful For
+
+Comparison counts can be great for comparing an algorithm to itself. This is primarily useful in two cases:
+
+1. Relating an algorithm's performance to the input data it operates on.
+    - This is examined in the analysis portion of this document.
+2. Relating an algorithm's performance for small values of $N$ to its performance for large values of $N$.
+    - This is examined in the profiling results and analysis that I performed above.
+
+### Why Permutations?
+
+Using all possible permutations of $N$ values lets us analyze how the input data can affect the performance of an algorithm. Looking at every possible permutation reveals weak points or strong points in the algorithms. We see that some algorithms perform fewer comparisons when the input data is already sorted, or almost sorted. Others perform worse when the input data is reverse sorted or almost reverse sorted.
+
+If we just selected a single random set of numbers, we might unfairly choose a set that performs better when sorted by one algorithm than any of the others, or worse, might give us different results every run. With that in mind, using multiple permutations ensures fairness when comparing different algorithms by enforcing unbiased input data.
+
+### Why These Algorithms?
+
+These four algorithms: mergesort, quicksort, heapsort, and shakersort, are the four that we were assigned. Aside from that, none of them are elementary sorts, and some like mergesort or quicksort are used in professional contexts. Another reason that other algorithms were not selected is that these all are comparison based, and therefore work with our comparison counting based performance analysis.
+
 ## Algorithms Summary
 
 ### Heap Sort
@@ -25,6 +88,8 @@ stateDiagram-v2
         2 --> 6
     }
 ```
+
+In the below examples, we will use alphabetic characters to represent the values in the array as distinct from their indices or placements in the heap. We treat 'A' as the lowest value character with each character in the alphabet having a value larger than the character before it.
 
 #### Max Heapification
 
@@ -246,11 +311,13 @@ All of our are implemented in classes that inherit from the abstract `SortingAlg
 
 ### Ensuring Fairness Across Algorithms
 
-To ensure fairness across algorithms, the same `_analyze` function is used to instatiate, execute, and retrieve comparison count results from each algorithm. This way, if there is a bug outside any individual algorithm, then it wil affect all algorithms, not just one or two of them.
+To ensure fairness across algorithms, the same `_analyze` function is used to instantiate, execute, and retrieve comparison count results from each algorithm. This way, if there is a bug outside any individual algorithm, then it wil affect all algorithms, not just one or two of them.
 
 To ensure fairness within algorithms, we used the `SortingAlgorithm` parent class for all of them to make sure that they all count comparisons the same way.
 
-One complication to this is the implementation of quicksort. While the others have limited leeway in how they can be implemented, quicksort has many different approaches, many of which can impact the comparison counts. To keep things fair, we chose to use a common approach to pivot selection in quicksort with the idea that it would give us typical performance for the algorithm in most cases. 
+One complication to this is the implementation of quicksort. While the others have limited leeway in how they can be implemented, quicksort has many different approaches, many of which can impact the comparison counts. To keep things fair, we chose to use a common approach to pivot selection in quicksort with the idea that it would give us typical performance for the algorithm in most cases.
+
+To prevent bias towards one algorithm, we included every possible ordering of the numbers in the input. This prevents cases in which one algorithm performs worse than another from being hidden, thus artificially inflating that algorithm's performance. This ensures that we are providing the algorithms with consistent and wholistic inputs.
 
 ## Results
 
@@ -701,6 +768,20 @@ Average:
 
 Todd introduced me to the idea of 'Who does What by When'. This is a useful way to think about organizing tasks and divvying them up. Making sure that you are actively aware of each of these Ws can help drive a team and keep them coordinated on tasks.
 
+This project also got me thinking more critically about performance analysis using proxy measures, particularly not taking the validity of the proxy for granted.
+
+I was surprised by mergesort's comparatively horrible performance, and on the contrary, heapsort's comparatively stellar performance.
+
 #### Brayden Graham
 
 Thaddeus Introduced me to Mermaid for making diagrams directly in Markdown, which I see as a great tool that I can implement into both personal and work projects going forward to help me better show and update charts in my documentation more frequently instead of using services like lucidchart. I was introduced to OOP in Python, which I didn't know was possible in that language, since I've avoided Python altogether in favor of lower-level, non-interpreted languages.
+
+## Sources
+
+Geeks for Geeks' article on *Heap Sort*. Last updated on 5 Feb, 2026. Accessed 17 Sep, 2026. https://www.geeksforgeeks.org/dsa/heap-sort/
+
+Geeks for Geeks' article on *Merge Sort*. Last updated on 6 Aug, 2026. Accessed 16 Sep, 2026. https://www.geeksforgeeks.org/dsa/merge-sort/
+
+Geeks for Geeks' article on *Quick Sort*. Last updated on 5 Aug, 2026. Accessed 23 Sep, 2026. https://www.geeksforgeeks.org/dsa/quick-sort-algorithm/
+
+Geeks for Geeks' article on *Cocktail Sort*. Last updated on 5 Sep, 2023. Accessed 24 Sep, 2026. https://www.geeksforgeeks.org/dsa/cocktail-sort/
