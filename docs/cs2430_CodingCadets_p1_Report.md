@@ -750,10 +750,9 @@ Looking at the results tables, shakersort and mergesort are the most stable algo
 
 This means that some algorithms are more divergent than others. Shakersort is the least divergent because it does not change at all what it does based on the values of the numbers. Quicksort is the most divergent because its pivot, its entire approach to sorting, is based on the value at a given position.
 
-### 3. Number of comparisons for n=12:
+### Number of Comparisons for $N=12$
 
 ### Algorithm Performance Comparison
-
 
 The best performing algorithm by number of comparisons is mergesort. Mergesort performs the fewest comparisons in every case regardless of $N$.
 
