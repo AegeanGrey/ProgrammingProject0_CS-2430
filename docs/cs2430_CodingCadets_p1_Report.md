@@ -24,7 +24,7 @@ Here are the profiling results of running each of the algorithms on the permutat
 
 Despite mergesort consistently having the fewest comparisons across all algorithms for any given permutation, it performs the worst by far. It spends >= ~600ms more than quicksort, the next slowest algorithm across multiple test runs.
 
-To further back up my claim, here is another profile snapshot. This snapshot was captured using a single run for each algorithm in which they each sorted one million elements. Shaker sort was left out because it took an unreasonable amount of time to finish.
+To further back up my claim, here is another profile snapshot. This snapshot was captured using a single run for each algorithm in which they each sorted one million elements. Shakersort was left out because it took an unreasonable amount of time to finish.
 
 ![A profile snapshot showing that mergesort took more time than quicksort which took more time than heapsort.](profile_snapshot_1.png)
 
@@ -32,9 +32,9 @@ In the test that generated the above snapshot:
 
 | Algorithm  | Comparison Count |
 | ---------- | ---------------- |
-| Merge Sort | $18716082$       |
-| Quick Sort | $25517011$       |
-| Heap Sort  | $36792758$       |
+| Mergesort | $18716082$       |
+| Quicksort | $25517011$       |
+| Heapsort  | $36792758$       |
 
 This clearly shows the discrepancy between comparison counts and actual performance even at large values of $N$. Mergesort still performs the worst, despite performing by far the fewest comparisons. Quicksort also performs worse than heapsort despite performing a fraction of the comparisons. Heapsort performs the best despite performing significantly more comparisons than any other algorithm.
 
@@ -63,9 +63,9 @@ These four algorithms: mergesort, quicksort, heapsort, and shakersort, are the f
 
 ## Algorithms Summary
 
-### Heap Sort
+### Heapsort
 
-Heap sort is a two-phase algorithm that treats the input array as a binary tree in which the children of element $i$ are located at index $2i+1$ and $2i+2$.
+Heapsort is a two-phase algorithm that treats the input array as a binary tree in which the children of element $i$ are located at index $2i+1$ and $2i+2$.
 
 ```mermaid
 stateDiagram-v2
@@ -93,7 +93,7 @@ In the below examples, we will use alphabetic characters to represent the values
 
 #### Max Heapification
 
-The first phase of heap sort is to convert the heap structure into a max heap. This means that every parent is greater than either of its children.
+The first phase of heapsort is to convert the heap structure into a max heap. This means that every parent is greater than either of its children.
 
 ```mermaid
 stateDiagram-v2
@@ -236,9 +236,9 @@ stateDiagram-v2
 
 ```
 
-### Merge Sort
+### Mergesort
 
-The merge sort algorithm has two phases. The second and more significant phase deals with merging multiple small sorted arrays into one large sorted array, hence the name 'merge sort'. Combining two already sorted arrays in this way is trivial, and merge sort seeks to take advantage of that.
+The mergesort algorithm has two phases. The second and more significant phase deals with merging multiple small sorted arrays into one large sorted array, hence the name 'mergesort'. Combining two already sorted arrays in this way is trivial, and mergesort seeks to take advantage of that.
 
 #### Splitting
 
@@ -744,21 +744,24 @@ Big-Θ:
 
 Reasoning: 
 
-### 2. Best and Worst case sensitivity:
+### Best and Worst Case Sensitivity
+
+Looking at the results tables, shakersort and mergesort are the most stable algorithms. Shakersort is constant with a given input size, and mergesort varies only slightly. On the other hand, heapsort and quicksort are the most volatile. Heapsort diverges by up to eight comparisons and quicksort by 18.
+
+This means that some algorithms are more divergent than others. Shakersort is the least divergent because it does not change at all what it does based on the values of the numbers. Quicksort is the most divergent because its pivot, its entire approach to sorting, is based on the value at a given position.
 
 ### 3. Number of comparisons for n=12:
 
-### 4. Best performing algorithm:
+### Algorithm Performance Comparison
 
-Best: 
 
-Worst: 
+The best performing algorithm by number of comparisons is mergesort. Mergesort performs the fewest comparisons in every case regardless of $N$.
 
-Average: 
+> If examining mergesort in the profiler, mergesort consistently performs the worst, until it is surpassed by shakersort at sufficiently high values of $N$. The profiler reveals that for $N\in{4,6,8}$, heapsort actually performs the best in all cases.
 
-### 5. Why results may very:
+### Why Results May Vary
 
----
+Our quicksort results may differ from other implementations because we chose the end of the array as a constant pivot point. Other implementations of quicksort may have chosen differently, and this choice can have significant impacts on the efficiency of the implementation. Many other potential differences between our implementations and others' are unrelated to the complexity of the algorithms. Though they may affect performance for a given $N$, they do not change how the algorithm *scales* to larger $N$.
 
 ## Conclusion
 
