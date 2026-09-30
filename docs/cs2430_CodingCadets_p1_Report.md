@@ -299,6 +299,155 @@ sequenceDiagram
     note over Final Array: ABCDEFG
 ```
 
+### Quick Sort
+
+Quick Sort is a sorting algorithm that works by establishing a `pivot` point in a given array and breaking it down into smaller permutations to sort. 
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state Array {
+        five: 5
+        one: 1
+        four: 4
+        six: 6
+        three: 3
+        two: 2
+        zero: 0
+    }
+```
+
+### Shakersort
+
+Shakersort is a sorting algorithm that will read individual elements of an array and sorts through them one at a time; Moving the largest elements it can find to the right side of the array and the smallest elements to the left.
+
+To do this, we establish a `pointer` variable which will keep track of its current position in the array via the index of an element. 
+
+The initial starting index for `pointer` will be the first element of the array, and it will compare the value of `pointer` to the value ahead of `pointer`. 
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state Array {
+        five: 5
+        one: 1
+        four: 4
+        six: 6
+        three: 3
+        two: 2
+        zero: 0
+    }
+```
+
+If we take the above array and plug it into shakersort, our `pointer` will perform a forward pass by reading the array from left to right with `pointer` starting from the first item.
+
+Our `pointer` is comparing the value of its current position (`5`) to the next value (`2`) to see if our `pointer` is greater than the next element.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state Pointer { 
+        five: 5
+    }
+    
+    state Next {
+        one: 1 
+    }   
+    
+    Pointer --> Next: is 5 > 1?
+```
+
+Since `5` is greater than `2` we will swap both elements, increment our `pointer` to advance to the next comparison.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    one: 1
+    
+    state Pointer {
+        five: 5
+    }
+    
+    state Next {
+        four: 4
+    }
+    
+    direction LR
+    one --> Pointer: Swap
+    Pointer --> Next: is 5 > 4?
+```
+
+We will repeat this process of each element until `pointer` finds the largest value and moves it to the end of the array (in this case `6` should be at the end of the array):
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state Array {
+        one: 1
+        four: 4
+        five: 5
+        three: 3
+        two: 2
+        zero: 0
+        six: 6
+    }
+```
+
+We then update our `pointer` and its starting position to be the second to last element of the array, creating what we describe as a 'wall' to not venture past already sorted elements. 
+
+Our `pointer` will do the opposite of what it did for the forward pass and performs a backward pass. 
+
+When a backward pass begins, it will have `pointer` read from right to left to find the smallest element in the array and compare if the indexed value of `pointer` is less than the previous element to perform a swap.
+
+```mermaid
+stateDiagram-v2
+    direction RL
+    
+    state Pointer {
+        zero: 0
+    }
+    
+    state Previous {
+        two: 2
+    }
+    
+    Pointer --> Previous: is 0 < 2?
+```
+
+If true, then swap the compared elements, decrement and repeat this process until it reaches the beginning of the array for the first backwards pass:
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state Array {
+        zero: 0
+        one: 1
+        four: 4
+        five: 5
+        three: 3
+        two: 2
+        six: 6
+    }
+```
+
+This is where our 'walls' will help out for already sorted elements as it will update the positioning of our `pointer` after multiple forward/backward passes. 
+
+The idea of shakersort is that it will be slow to start but "spins up" faster with each completed pass until all individual elements are sorted through the array:
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state Array {
+        zero: 0
+        one: 1
+        two: 2
+        three: 3
+        four: 4
+        five: 5
+        six: 6
+    }
+```
+
 ## Methods
 
 ### Permutation Generation

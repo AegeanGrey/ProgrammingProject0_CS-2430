@@ -74,7 +74,7 @@ class ShakerSort(SortingAlgorithm.SortingAlgorithm):
             elif not forward:
 
                 # compares if the array value to the left is less than the
-                # array value to the right : a[leftElement] < a[right_wall]
+                # array value to the right : a[right_wall] < a[previousElement]
                 if self.compareLeast(array[counter], array[counter - 1]):
 
                     # then swap the places of each value with their current index
