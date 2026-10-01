@@ -299,82 +299,19 @@ sequenceDiagram
 
 ### Quick Sort
 
-Quicksort is a sorting algorithm that works by establishing a `pivot` point in a given array and partitions it to sort.
-
-In this case of quicksort, I used recursion and chose to use the `pivot` point at the end of the array. Below is a sample array we will use:
+Quick Sort is a sorting algorithm that works by establishing a `pivot` point in a given array and breaking it down into smaller permutations to sort. 
 
 ```mermaid
 stateDiagram-v2
     direction LR
     state Array {
         five: 5
-        two: 2
-        four: 4
-        six: 6
-        one: 1
-        three: 3
-    }
-```
-
-If we take the last number of the above array (`3`) as our first `pivot`, we will create two partitions. One containing the numbers that are less than 3 and the other containing all numbers that are greater than `3`:
-
-```mermaid
-stateDiagram-v2
-    
-    state Pivot {
-        three: 3
-    }
-    
-    state Partition1 {
-        two: 2
         one: 1
         four: 4
         six: 6
         three: 3
         two: 2
-        one: 1
-    }
-    
-    state Partition2 {
-        five: 5
-        four: 4
-        six: 6
-    }
-    
-    Pivot --> Partition1: Nums < 3
-    Pivot --> Partition2: Nums > 3
-    
-    state SubPartition1(a) {
-        2
-    }
-    
-    Partition1 --> none1: Nums < 1
-    Partition1 --> SubPartition1(a): Nums > 1
-    
-    state SubPartition2(a) {
-        five1
-        four1
-    }
-    
-    Partition2 --> SubPartition2(a): Nums < 6
-    Partition2 --> none2: Nums > 6
-    
-    SubPartition2(a) --> none3: Nums < 4
-    SubPartition2(a) --> five2: Nums > 4
-```
-
-Now reading each of our `pivot`s values from left to right, quicksort will return an ordered array of:
-
-```mermaid
-stateDiagram-v2
-    direction LR
-    state Array {
-        one: 1
-        two: 2
-        three: 3
-        four: 4
-        five: 5
-        six: 6
+        zero: 0
     }
 ```
 
@@ -395,36 +332,9 @@ stateDiagram-v2
 	    direction LR
         five: 5
         one: 1
-    }
-    
-    state Partition2 {
-        five: 5
         four: 4
         six: 6
-    }
-    
-    Pivot --> Partition1: Nums < 3
-    Pivot --> Partition2: Nums > 3
-```
-
-After the partitions are created, it will repeat the `pivot` process again for each partition creating multiple branches to find the proper sorting order.
-
-```mermaid
-stateDiagram-v2
-    
-    state "None" as none1
-    state "None" as none2
-    state "None" as none3
-    
-    state "5" as five1
-    state "5" as five2
-    state "4" as four1
-    
-    state Pivot {
         three: 3
-    }
-    
-    state Partition1 {
         two: 2
         zero: 0
     }
@@ -1013,15 +923,7 @@ Our quicksort results may differ from other implementations because we chose the
 
 ## Conclusion
 
-
-
 ### Reflection
-
-Mermaid made visualizing easier while improving the quality of our work on these algorithms. 
-
-Organization and coordination were initial pain points when navigating through our project objectives trying to get everyone on the same page. However, we were able to address this by exchanging contacts, meeting up outside of class, and constantly referring to our project requirements to garner what needed to get done, by who and when.
-
-Other obstacles we faced were ideas or concepts ballooning when approaching how to implement algorithms, and differentiating between declarative and imperative programming paradigms.
 
 #### Thaddeus Schelp
 
