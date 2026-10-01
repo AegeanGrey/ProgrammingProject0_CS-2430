@@ -954,7 +954,7 @@ I was surprised by mergesort's comparatively horrible performance, and on the co
 
 #### Brayden Graham
 
-Thaddeus Introduced me to Mermaid for making diagrams directly in Markdown, which I see as a great tool that I can implement into both personal and work projects going forward to help me better show and update charts in my documentation more frequently instead of using services like lucidchart. I was introduced to OOP in Python, which I didn't know was possible in that language, since I've avoided Python altogether in favor of lower-level, non-interpreted languages.
+Thaddeus introduced me to Mermaid for creating diagrams and $\LaTeX$ for formatting formulas directly in Markdown. Both are great tools that I can implement into personal and work projects going forward. They will help me better present charts and formulas in my documentation rather than embedding images from services like Lucidchart, while also making it easier to update and maintain. In this project, I was also introduced to OOP in Python, which I didn't know was possible, as I had previously avoided Python in favor of lower-level, non-interpreted languages.
 
 ## Sources
 
