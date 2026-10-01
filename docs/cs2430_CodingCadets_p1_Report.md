@@ -873,7 +873,7 @@ To prevent bias towards one algorithm, we included every possible ordering of th
 
 ##### Mergesort
 
-- **$\Omega(n \log_2 n)$ Best Case:** Mergesort unconditionally divides the array into two halves until single-element subproblems remain (a tree of depth $\lceil \log_2 n \rceil$). Even on sorted input, merging two halves of size $\frac{k}{2}$ requires at least $\frac{k}/{2}$ comparisons, giving $\Omega(n \log_2 n)$.
+- **$\Omega(n \log_2 n)$ Best Case:** Mergesort -unconditionally pairs adjacent sublists bottom-up from single-element lists, executing across $\lceil \log_2 n \rceil$ passes. Even on sorted input, merging two sorted sublists of size $\dfrac{k}{2}$ executes at least $\dfrac{k}{2}$ comparisons in `_merge` before exhausting a sublist. When fully evaluated via `list(a[0])`, the total comparisons across all passes yield $\Omega(n \log n)$.
     
 - **$\Theta(n \log_2 n)$ Average Case:** By the Master Theorem, the recurrence $T(n) = 2T(\frac{n}{2}) + \Theta(n)$ falls into Case 2 ($f(n) = \Theta(n^{\log_2 2})$), which evaluates to $\Theta(n \log_2 n)$.
     
@@ -889,7 +889,7 @@ To prevent bias towards one algorithm, we included every possible ordering of th
 
 ##### Shakersort
 
-- **$\Omega(n)$ Best Case:** Shakersort is a bidirectional variation of Bubble Sort. On an already sorted array, a single forward pass makes $n - 1$ comparisons, detects zero swaps, and terminates early via its boolean swap flag in $\Omega(n)$ time.
+- **$\Omega(n)$ Best Case:** Shakersort is a bidirectional variation of Bubble Sort. On an already sorted array, a single forward pass makes $n - 1$ comparisons, detects zero swaps, and terminates early via its boolean swap flag in $\Omega(\frac{1}{4}n^2)$ time.
     
 - **$\Theta(n^2)$ Average Case:** On a random permutation, the expected number of inverted pairs (inversions) is $\frac{n(n - 1)}{4}$. Because adjacent swaps only eliminate 1 inversion per comparison, the average total operations remain quadratic: $\Theta(n^2)$.
     
