@@ -47,7 +47,9 @@ Another argument against using comparisons is that because not all sorting algor
 Comparison counts can be great for comparing an algorithm to itself. This is primarily useful in two cases:
 
 1. Relating an algorithm's performance to the input data it operates on.
+    - This is examined in the analysis portion of this document.
 2. Relating an algorithm's performance for small values of $N$ to its performance for large values of $N$.
+    - This is examined in the profiling results and analysis that I performed above.
 
 ### Why Permutations?
 
@@ -328,9 +330,36 @@ stateDiagram-v2
     state Partition1 {
         two: 2
         one: 1
+    }
+    
+    state Partition2 {
+        five: 5
         four: 4
         six: 6
+    }
+    
+    Pivot --> Partition1: Nums < 3
+    Pivot --> Partition2: Nums > 3
+```
+
+After the partitions are created, it will repeat the `pivot` process again for each partition creating multiple branches to find the proper sorting order.
+
+```mermaid
+stateDiagram-v2
+    
+    state "None" as none1
+    state "None" as none2
+    state "None" as none3
+    
+    state "5" as five1
+    state "5" as five2
+    state "4" as four1
+    
+    state Pivot {
         three: 3
+    }
+    
+    state Partition1 {
         two: 2
         one: 1
     }
@@ -388,79 +417,70 @@ The initial starting index for `pointer` will be the first element of the array,
 
 ```mermaid
 stateDiagram-v2
-	classDef note fill:#fff4b1
-
-    direction TB
+    direction LR
     state Array {
-	    direction LR
         five: 5
         one: 1
-    }
-    
-    state Partition2 {
-        five: 5
         four: 4
         six: 6
-    }
-    
-    Pivot --> Partition1: Nums < 3
-    Pivot --> Partition2: Nums > 3
-```
-
-After the partitions are created, it will repeat the `pivot` process again for each partition creating multiple branches to find the proper sorting order.
-
-```mermaid
-stateDiagram-v2
-    
-    state "None" as none1
-    state "None" as none2
-    state "None" as none3
-    
-    state "5" as five1
-    state "5" as five2
-    state "4" as four1
-    
-    state Pivot {
         three: 3
-    }
-    
-    state Partition1 {
         two: 2
         zero: 0
     }
-	Pointer --> five
-	Next --> one
-	Note: is 5 > 1?
-	class Note note
 ```
 
 If we take the above array and plug it into shakersort, our `pointer` will perform a forward pass by reading the array from left to right with `pointer` starting from the first item.
 
 Our `pointer` is comparing the value of its current position (`5`) to the next value (`2`) to see if our `pointer` is greater than the next element.
 
+```mermaid
+stateDiagram-v2
+    direction LR
+    state Pointer { 
+        five: 5
+    }
+    
+    state Next {
+        one: 1 
+    }   
+    
+    Pointer --> Next: is 5 > 1?
+```
+
 Since `5` is greater than `2` we will swap both elements, increment our `pointer` to advance to the next comparison.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    one: 1
+    
+    state Pointer {
+        five: 5
+    }
+    
+    state Next {
+        four: 4
+    }
+    
+    direction LR
+    one --> Pointer: Swap
+    Pointer --> Next: is 5 > 4?
+```
 
 We will repeat this process of each element until `pointer` finds the largest value and moves it to the end of the array (in this case `6` should be at the end of the array):
 
 ```mermaid
 stateDiagram-v2
-	classDef note fill:#fff4b1
-
-    direction TB
+    direction LR
     state Array {
-	    direction LR
         one: 1
-        five: 5
         four: 4
+        five: 5
         three: 3
         two: 2
         zero: 0
         six: 6
     }
-	Pointer --> five
-	Next --> four
-	Note: is 5 > 4?
-	class Note note
 ```
 
 We then update our `pointer` and its starting position to be the second to last element of the array, creating what we describe as a 'wall' to not venture past already sorted elements. 
@@ -922,50 +942,53 @@ To prevent bias towards one algorithm, we included every possible ordering of th
 
 ## Analysis
 
-### Estimated Big-$O$, Big-$\Omega$, and Big-$\Theta$:
+### Estimated Big-O, Big-Ω, and Big-Θ:
 
 #### Overview Table:
 
-| Sort Algorithm |       Big-$\Omega$       |     Big-$\Theta$     |     Big-$O$     |
-| :------------: | :----------------------: | :------------------: | :-------------: |
-|    Heapsort    |   $\Omega(n \log_2 n)$   | $\Theta(n \log_2 n)$ | $O(n \log_2 n)$ |
-|   Mergesort    |   $\Omega(n \log_2 n)$   | $\Theta(n \log_2 n)$ | $O(n \log_2 n)$ |
-|   Quicksort    |   $\Omega(n \log_2 n)$   | $\Theta(n \log_2 n)$ |    $O(n^2)$     |
-|   Shakersort   | $\Omega(\frac{1}{4}n^2)$ |    $\Theta(n^2)$     |    $O(n^2)$     |
+| Sort Algorithm |    Big-$\Omega$    |    Big-$\Theta$    |    Big-$O$    |
+|:--------------:|:------------------:|:------------------:|:-------------:|
+|    Heapsort    | $\Omega(n\log{n})$ | $\Theta(n\log{n})$ | $O(n\log{n})$ |
+|   Mergesort    | $\Omega(n\log{n})$ | $\Theta(n\log{n})$ | $O(n\log{n})$ |
+|   Quicksort    | $\Omega(n\log{n})$ | $\Theta(n\log{n})$ |   $O(n^2)$    |
+|   Shakersort   |    $\Omega(n)$     |   $\Theta(n^2)$    |   $O(n^2)$    |
 
 
-#### Reasoning
+#### Reasoning: 
 ##### Heapsort
 
-- **$\Omega(n \log_2 n)$ Best Case:** Building a max-heap takes $O(n)$ time. Even if all elements are identical or ideal, extracting the root and calling `_heapify` $n-1$ times requires traversing down the binary tree height of $\lfloor \log_2 k \rfloor$ at each step, yielding a lower bound of $\Omega(n \log_2 n)$.
+- **$\Omega(n \log n)$ Best Case:** Building a max-heap takes $O(n)$ time. Even if all elements are identical or ideal, extracting the root and calling `heapify` $n-1$ times requires traversing down the binary tree height of $\lfloor \log_2 k \rfloor$ at each step, yielding a lower bound of $\Omega(n \log n)$.
     
-- **$\Theta(n \log_2 n)$ Average Case:** For a random permutation, each extracted element must sink down near the bottom of the heap during restoration, performing $\approx \log_2 k$ comparisons per element. The sum $\displaystyle \sum_{k=1}^{n} \log_2 k = \log_2(n!) = \Theta(n \log_2 n)$.
+- **$\Theta(n \log n)$ Average Case:** For a random permutation, each extracted element must sink down near the bottom of the heap during restoration, performing $\approx \log_2 k$ comparisons per element. The sum $\sum_{k=1}^{n} \log_2 k = \log_2(n!) = \Theta(n \log n)$.
     
-- **$O(n \log_2 n)$ Worst Case:** The tree height is strictly bounded by $\lfloor \log_2 n \rfloor$. Because each of the $N$ extractions performs at most $2 \lfloor \log_2 n \rfloor$ comparisons during reheapification, total runtime never exceeds $O(n \log_2 n)$.
+- **$O(n \log n)$ Worst Case:** The tree height is strictly bounded by $\lfloor \log_2 n \rfloor$. Because each of the $n$ extractions performs at most $2 \lfloor \log_2 n \rfloor$ comparisons during `sift-down`, total runtime never exceeds $O(n \log n)$.
+    
 
 ##### Mergesort
 
-- **$\Omega(n \log_2 n)$ Best Case:** Mergesort -unconditionally pairs adjacent sublists bottom-up from single-element lists, executing across $\lceil \log_2 n \rceil$ passes. Even on sorted input, merging two sorted sublists of size $\dfrac{k}{2}$ executes at least $\dfrac{k}{2}$ comparisons in `_merge` before exhausting a sublist. When fully evaluated via `list(a[0])`, the total comparisons across all passes yield $\Omega(n \log n)$.
+- **$\Omega(n \log n)$ Best Case:** Mergesort unconditionally divides the array into two halves until single-element subproblems remain (a tree of depth $\lceil \log_2 n \rceil$). Even on sorted input, merging two halves of size $k/2$ requires at least $k/2$ comparisons, giving $\Omega(n \log n)$.
     
-- **$\Theta(n \log_2 n)$ Average Case:** By the Master Theorem, the recurrence $T(n) = 2T(\frac{n}{2}) + \Theta(n)$ falls into Case 2 ($f(n) = \Theta(n^{\log_2 2})$), which evaluates to $\Theta(n \log_2 n)$.
+- **$\Theta(n \log n)$ Average Case:** By the Master Theorem, the recurrence $T(n) = 2T(n/2) + \Theta(n)$ falls into Case 2 ($f(n) = \Theta(n^{\log_2 2})$), which evaluates to $\Theta(n \log n)$.
     
-- **$O(n \log_2 n)$ Worst Case:** Merging two sorted arrays of combined size $k$ takes at most $k - 1$ comparisons. Summing the work across all $\log_2 n$ levels of the recursion tree yields an absolute upper bound of $O(n \log_2 n)$.
+- **$O(n \log n)$ Worst Case:** Merging two sorted arrays of combined size $k$ takes at most $k - 1$ comparisons. Summing the work across all $\log_2 n$ levels of the recursion tree yields an absolute upper bound of $O(n \log n)$.
+    
 
 ##### Quicksort
 
-- **$\Omega(n \log_2 n)$ Best Case:** Occurs when the pivot choice splits the array into two equal halves at every step ($q = \lfloor \frac{n}{2} \rfloor$). The recurrence $T(n) = 2T(\frac{n}{2}) + O(n)$ yields an optimal lower bound of $\Omega(n \log_2 n)$.
+- **$\Omega(n \log n)$ Best Case:** Occurs when the pivot choice splits the array into two equal halves at every step ($q = \lfloor n/2 \rfloor$). The recurrence $T(n) = 2T(n/2) + O(n)$ yields an optimal lower bound of $\Omega(n \log n)$.
     
-- **$\Theta(n \log_2 n)$ Average Case:** Assuming a uniform distribution over pivot choices ($P(q) = \frac{1}{n}$), the average depth of the recursion tree remains logarithmic ($2 \ln n \approx 1.39 \log_2 n$), giving an average tight bound of $\Theta(n \log_2 n)$.
+- **$\Theta(n \log n)$ Average Case:** Assuming a uniform distribution over pivot choices ($P(q) = 1/n$), the average depth of the recursion tree remains logarithmic ($2 \ln n \approx 1.39 \log_2 n$), giving an average tight bound of $\Theta(n \log n)$.
     
-- **$O(n^2)$ Worst Case:** Occurs when the pivot is consistently the minimum or maximum element (e.g., sorted array with first/last element chosen as pivot). The recurrence degrades to $T(n) = T(n - 1) + O(n)$, yielding a summation $\displaystyle \sum_{i=1}^{n} i = \frac{n(n+1)}{2} = O(n^2)$.
+- **$O(n^2)$ Worst Case:** Occurs when the pivot is consistently the minimum or maximum element (e.g., sorted array with first/last element chosen as pivot). The recurrence degrades to $T(n) = T(n - 1) + O(n)$, yielding a summation $\sum_{i=1}^{n} i = \frac{n(n+1)}{2} = O(n^2)$.
+    
 
 ##### Shakersort
 
-- **$\Omega(\frac{1}{4}n^2)$ Best Case:** Shakersort is a bidirectional variation of Bubble Sort. On an already sorted array, a single forward pass makes $n - 1$ comparisons, detects zero swaps, and terminates early via its boolean swap flag in $\Omega(\frac{1}{4}n^2)$ time. -- Will fix
+- **$\Omega(n)$ Best Case:** Shakersort is a bidirectional variation of Bubble Sort. On an already sorted array, a single forward pass makes $n - 1$ comparisons, detects zero swaps, and terminates early via its boolean swap flag in $\Omega(n)$ time.
     
 - **$\Theta(n^2)$ Average Case:** On a random permutation, the expected number of inverted pairs (inversions) is $\frac{n(n - 1)}{4}$. Because adjacent swaps only eliminate 1 inversion per comparison, the average total operations remain quadratic: $\Theta(n^2)$.
     
-- **$O(n^2)$ Worst Case:** On a reverse-sorted array, every adjacent pair is an inversion ($\frac{n(n - 1)}{2}$ inversions). The algorithm requires $\frac{n}{2}$ full double-passes of $O(n)$ comparisons each, yielding an upper bound of $O(n^2)$.
+- **$O(n^2)$ Worst Case:** On a reverse-sorted array, every adjacent pair is an inversion ($\frac{n(n - 1)}{2}$ inversions). The algorithm requires $n/2$ full double-passes of $O(n)$ comparisons each, yielding an upper bound of $O(n^2)$.
 
 ### Best and Worst Case Sensitivity
 
@@ -975,12 +998,12 @@ This means that some algorithms are more divergent than others. Shakersort is th
 
 ### Predicted number of comparisons for $N=12$
 
-| **Algorithm**  | **$C(4)$ (Measured)** | **$C(8)$ (Measured)** | **Empirical Growth Exponent ($k$)** | **$C(12)$ (Projected)** |
-|----------------|-----------------------|-----------------------|-------------------------------------|-------------------------|
-| **Mergesort**  | $4.67$                | $15.73$               | $1.752$                             | **$32.01$**             |
-| **Quicksort**  | $7.17$                | $21.92$               | $1.612$                             | **$42.14$**             |
-| **Heapsort**   | $8.50$                | $27.81$               | $1.710$                             | **$55.63$**             |
-| **Shakersort** | $15.00$               | $50.00$               | $1.737$                             | **$101.12$**            |
+| **Algorithm**  | **C(4) (Measured)** | **C(8) (Measured)** | **Empirical Growth Exponent (k)** | **C(12) (Projected )** |
+| -------------- | ------------------- | ------------------- | --------------------------------- | ---------------------- |
+| **Mergesort**  | $4.67$              | $15.73$             | $1.752$                           | **$32.01$**            |
+| **Quicksort**  | $7.17$              | $21.92$             | $1.612$                           | **$42.14$**            |
+| **Heapsort**   | $8.50$              | $27.81$             | $1.710$                           | **$55.63$**            |
+| **Shakersort** | $15.00$             | $50.00$             | $1.737$                           | **$101.12$**           |
 
 #### Formulas used to predict results:
 
@@ -990,14 +1013,10 @@ This means that some algorithms are more divergent than others. Shakersort is th
 | $n_3$            | Projection target size ($n_3 = 12$)                       |
 | $C(n_1), C(n_2)$ | Measured comparison counts at input sizes $n_1$ and $n_2$ |
 | $C(n_3)$         | Projected comparison count at target input size $n_3$     |
-| $k$              | Empirical Growth Exponent                                 |
+| $k$              | Empirical Growth Exponenet                                |
 
-$$
-\begin{aligned}
-  \text{Step 1: }& \\ k &= \frac{\log(\frac{C(n_2)}{C(n_1)})}{\log(\frac{n_2}{n_1})}  \\
-  \text{Step 2: }& \\ C(n_3) &= C(n_2) \cdot (\frac{n_3}{n_2})^k
-\end{aligned}
-$$
+$$\text{Step 1: } k = \frac{\log\left(\frac{C(n_2)}{C(n_1)}\right)}{\log\left(\frac{n_2}{n_1}\right)}$$
+$$\text{Step 2: } C(n_3) = C(n_2) \cdot \left(\frac{n_3}{n_2}\right)^k$$
 
 ### Algorithm Performance Comparison
 
@@ -1005,7 +1024,7 @@ The best performing algorithm by number of comparisons is mergesort. Mergesort p
 
 > If examining mergesort in the profiler, mergesort consistently performs the worst, until it is surpassed by shakersort at sufficiently high values of $N$. The profiler reveals that for $N\in{4,6,8}$, heapsort actually performs the best in all cases.
 
-As $N$ scales, the empirical exponent $k$ for mergesort, heapsort, and quicksort will fall from our small-sample values ($\sim 1.6\text{-}1.75$) toward $1.0$ as logarithmic growth dominates, while shakersort's $k$ will rise from $\sim 1.74$ toward $2.0$ as quadratic comparisons drown out lower-order overhead.
+As $n$ scales, the empirical exponent $k$ for Mergesort, Heapsort, and Quicksort will fall from our small-sample values ($\sim 1.6\text{-}1.75$) toward $1.0$ as logarithmic growth dominates, while Shakersort's $k$ will rise from $\sim 1.74$ toward $2.0$ as quadratic comparisons drown out lower-order overhead.
 
 ### Why Results May Vary
 
