@@ -852,45 +852,42 @@ To prevent bias towards one algorithm, we included every possible ordering of th
 
 ## Analysis
 
-### Estimated Big-O, Big-Ω, and Big-Θ:
+### Estimated Big-$O$, Big-$\Omega$, and Big-$\Theta$:
 
 #### Overview Table:
 
-| Sort Algorithm |    Big-$\Omega$    |    Big-$\Theta$    |    Big-$O$    |
-|:--------------:|:------------------:|:------------------:|:-------------:|
-|    Heapsort    | $\Omega(n\log{n})$ | $\Theta(n\log{n})$ | $O(n\log{n})$ |
-|   Mergesort    | $\Omega(n\log{n})$ | $\Theta(n\log{n})$ | $O(n\log{n})$ |
-|   Quicksort    | $\Omega(n\log{n})$ | $\Theta(n\log{n})$ |   $O(n^2)$    |
-|   Shakersort   |    $\Omega(n)$     |   $\Theta(n^2)$    |   $O(n^2)$    |
+| Sort Algorithm |     Big-$\Omega$     |     Big-$\Theta$     |     Big-$O$     |
+|:--------------:|:--------------------:|:--------------------:|:---------------:|
+|    Heapsort    | $\Omega(n \log_2 n)$ | $\Theta(n \log_2 n)$ | $O(n \log_2 n)$ |
+|   Mergesort    | $\Omega(n \log_2 n)$ | $\Theta(n \log_2 n)$ | $O(n \log_2 n)$ |
+|   Quicksort    | $\Omega(n \log_2 n)$ | $\Theta(n \log_2 n)$ |    $O(n^2)$     |
+|   Shakersort   |     $\Omega(n)$      |    $\Theta(n^2)$     |    $O(n^2)$     |
 
 
-#### Reasoning: 
+#### Reasoning
 ##### Heapsort
 
-- **$\Omega(n \log n)$ Best Case:** Building a max-heap takes $O(n)$ time. Even if all elements are identical or ideal, extracting the root and calling `heapify` $n-1$ times requires traversing down the binary tree height of $\lfloor \log_2 k \rfloor$ at each step, yielding a lower bound of $\Omega(n \log n)$.
+- **$\Omega(n \log_2 n)$ Best Case:** Building a max-heap takes $O(n)$ time. Even if all elements are identical or ideal, extracting the root and calling `_heapify` $n-1$ times requires traversing down the binary tree height of $\lfloor \log_2 k \rfloor$ at each step, yielding a lower bound of $\Omega(n \log_2 n)$.
     
-- **$\Theta(n \log n)$ Average Case:** For a random permutation, each extracted element must sink down near the bottom of the heap during restoration, performing $\approx \log_2 k$ comparisons per element. The sum $\sum_{k=1}^{n} \log_2 k = \log_2(n!) = \Theta(n \log n)$.
+- **$\Theta(n \log_2 n)$ Average Case:** For a random permutation, each extracted element must sink down near the bottom of the heap during restoration, performing $\approx \log_2 k$ comparisons per element. The sum $\displaystyle \sum_{k=1}^{n} \log_2 k = \log_2(n!) = \Theta(n \log_2 n)$.
     
-- **$O(n \log n)$ Worst Case:** The tree height is strictly bounded by $\lfloor \log_2 n \rfloor$. Because each of the $n$ extractions performs at most $2 \lfloor \log_2 n \rfloor$ comparisons during `sift-down`, total runtime never exceeds $O(n \log n)$.
-    
+- **$O(n \log_2 n)$ Worst Case:** The tree height is strictly bounded by $\lfloor \log_2 n \rfloor$. Because each of the $N$ extractions performs at most $2 \lfloor \log_2 n \rfloor$ comparisons during reheapification, total runtime never exceeds $O(n \log_2 n)$.
 
 ##### Mergesort
 
-- **$\Omega(n \log n)$ Best Case:** Mergesort unconditionally divides the array into two halves until single-element subproblems remain (a tree of depth $\lceil \log_2 n \rceil$). Even on sorted input, merging two halves of size $k/2$ requires at least $k/2$ comparisons, giving $\Omega(n \log n)$.
+- **$\Omega(n \log_2 n)$ Best Case:** Mergesort unconditionally divides the array into two halves until single-element subproblems remain (a tree of depth $\lceil \log_2 n \rceil$). Even on sorted input, merging two halves of size $\frac{k}{2}$ requires at least $\frac{k}/{2}$ comparisons, giving $\Omega(n \log_2 n)$.
     
-- **$\Theta(n \log n)$ Average Case:** By the Master Theorem, the recurrence $T(n) = 2T(n/2) + \Theta(n)$ falls into Case 2 ($f(n) = \Theta(n^{\log_2 2})$), which evaluates to $\Theta(n \log n)$.
+- **$\Theta(n \log_2 n)$ Average Case:** By the Master Theorem, the recurrence $T(n) = 2T(\frac{n}{2}) + \Theta(n)$ falls into Case 2 ($f(n) = \Theta(n^{\log_2 2})$), which evaluates to $\Theta(n \log_2 n)$.
     
-- **$O(n \log n)$ Worst Case:** Merging two sorted arrays of combined size $k$ takes at most $k - 1$ comparisons. Summing the work across all $\log_2 n$ levels of the recursion tree yields an absolute upper bound of $O(n \log n)$.
-    
+- **$O(n \log_2 n)$ Worst Case:** Merging two sorted arrays of combined size $k$ takes at most $k - 1$ comparisons. Summing the work across all $\log_2 n$ levels of the recursion tree yields an absolute upper bound of $O(n \log_2 n)$.
 
 ##### Quicksort
 
-- **$\Omega(n \log n)$ Best Case:** Occurs when the pivot choice splits the array into two equal halves at every step ($q = \lfloor n/2 \rfloor$). The recurrence $T(n) = 2T(n/2) + O(n)$ yields an optimal lower bound of $\Omega(n \log n)$.
+- **$\Omega(n \log_2 n)$ Best Case:** Occurs when the pivot choice splits the array into two equal halves at every step ($q = \lfloor \frac{n}{2} \rfloor$). The recurrence $T(n) = 2T(\frac{n}{2}) + O(n)$ yields an optimal lower bound of $\Omega(n \log_2 n)$.
     
-- **$\Theta(n \log n)$ Average Case:** Assuming a uniform distribution over pivot choices ($P(q) = 1/n$), the average depth of the recursion tree remains logarithmic ($2 \ln n \approx 1.39 \log_2 n$), giving an average tight bound of $\Theta(n \log n)$.
+- **$\Theta(n \log_2 n)$ Average Case:** Assuming a uniform distribution over pivot choices ($P(q) = \frac{1}{n}$), the average depth of the recursion tree remains logarithmic ($2 \ln n \approx 1.39 \log_2 n$), giving an average tight bound of $\Theta(n \log_2 n)$.
     
-- **$O(n^2)$ Worst Case:** Occurs when the pivot is consistently the minimum or maximum element (e.g., sorted array with first/last element chosen as pivot). The recurrence degrades to $T(n) = T(n - 1) + O(n)$, yielding a summation $\sum_{i=1}^{n} i = \frac{n(n+1)}{2} = O(n^2)$.
-    
+- **$O(n^2)$ Worst Case:** Occurs when the pivot is consistently the minimum or maximum element (e.g., sorted array with first/last element chosen as pivot). The recurrence degrades to $T(n) = T(n - 1) + O(n)$, yielding a summation $\displaystyle \sum_{i=1}^{n} i = \frac{n(n+1)}{2} = O(n^2)$.
 
 ##### Shakersort
 
@@ -898,7 +895,7 @@ To prevent bias towards one algorithm, we included every possible ordering of th
     
 - **$\Theta(n^2)$ Average Case:** On a random permutation, the expected number of inverted pairs (inversions) is $\frac{n(n - 1)}{4}$. Because adjacent swaps only eliminate 1 inversion per comparison, the average total operations remain quadratic: $\Theta(n^2)$.
     
-- **$O(n^2)$ Worst Case:** On a reverse-sorted array, every adjacent pair is an inversion ($\frac{n(n - 1)}{2}$ inversions). The algorithm requires $n/2$ full double-passes of $O(n)$ comparisons each, yielding an upper bound of $O(n^2)$.
+- **$O(n^2)$ Worst Case:** On a reverse-sorted array, every adjacent pair is an inversion ($\frac{n(n - 1)}{2}$ inversions). The algorithm requires $\frac{n}{2}$ full double-passes of $O(n)$ comparisons each, yielding an upper bound of $O(n^2)$.
 
 ### Best and Worst Case Sensitivity
 
@@ -908,12 +905,12 @@ This means that some algorithms are more divergent than others. Shakersort is th
 
 ### Predicted number of comparisons for $N=12$
 
-| **Algorithm**  | **C(4) (Measured)** | **C(8) (Measured)** | **Empirical Growth Exponent (k)** | **C(12) (Projected )** |
-| -------------- | ------------------- | ------------------- | --------------------------------- | ---------------------- |
-| **Mergesort**  | $4.67$              | $15.73$             | $1.752$                           | **$32.01$**            |
-| **Quicksort**  | $7.17$              | $21.92$             | $1.612$                           | **$42.14$**            |
-| **Heapsort**   | $8.50$              | $27.81$             | $1.710$                           | **$55.63$**            |
-| **Shakersort** | $15.00$             | $50.00$             | $1.737$                           | **$101.12$**           |
+| **Algorithm**  | **$C(4)$ (Measured)** | **$C(8)$ (Measured)** | **Empirical Growth Exponent ($k$)** | **$C(12)$ (Projected)** |
+|----------------|-----------------------|-----------------------|-------------------------------------|-------------------------|
+| **Mergesort**  | $4.67$                | $15.73$               | $1.752$                             | **$32.01$**             |
+| **Quicksort**  | $7.17$                | $21.92$               | $1.612$                             | **$42.14$**             |
+| **Heapsort**   | $8.50$                | $27.81$               | $1.710$                             | **$55.63$**             |
+| **Shakersort** | $15.00$               | $50.00$               | $1.737$                             | **$101.12$**            |
 
 #### Formulas used to predict results:
 
@@ -923,10 +920,14 @@ This means that some algorithms are more divergent than others. Shakersort is th
 | $n_3$            | Projection target size ($n_3 = 12$)                       |
 | $C(n_1), C(n_2)$ | Measured comparison counts at input sizes $n_1$ and $n_2$ |
 | $C(n_3)$         | Projected comparison count at target input size $n_3$     |
-| $k$              | Empirical Growth Exponenet                                |
+| $k$              | Empirical Growth Exponent                                 |
 
-$$\text{Step 1: } k = \frac{\log\left(\frac{C(n_2)}{C(n_1)}\right)}{\log\left(\frac{n_2}{n_1}\right)}$$
-$$\text{Step 2: } C(n_3) = C(n_2) \cdot \left(\frac{n_3}{n_2}\right)^k$$
+$$
+\begin{aligned}
+  \text{Step 1: }& \\ k &= \frac{\log(\frac{C(n_2)}{C(n_1)})}{\log(\frac{n_2}{n_1})}  \\
+  \text{Step 2: }& \\ C(n_3) &= C(n_2) \cdot (\frac{n_3}{n_2})^k
+\end{aligned}
+$$
 
 ### Algorithm Performance Comparison
 
@@ -934,7 +935,7 @@ The best performing algorithm by number of comparisons is mergesort. Mergesort p
 
 > If examining mergesort in the profiler, mergesort consistently performs the worst, until it is surpassed by shakersort at sufficiently high values of $N$. The profiler reveals that for $N\in{4,6,8}$, heapsort actually performs the best in all cases.
 
-As $n$ scales, the empirical exponent $k$ for Mergesort, Heapsort, and Quicksort will fall from our small-sample values ($\sim 1.6\text{-}1.75$) toward $1.0$ as logarithmic growth dominates, while Shakersort's $k$ will rise from $\sim 1.74$ toward $2.0$ as quadratic comparisons drown out lower-order overhead.
+As $N$ scales, the empirical exponent $k$ for mergesort, heapsort, and quicksort will fall from our small-sample values ($\sim 1.6\text{-}1.75$) toward $1.0$ as logarithmic growth dominates, while shakersort's $k$ will rise from $\sim 1.74$ toward $2.0$ as quadratic comparisons drown out lower-order overhead.
 
 ### Why Results May Vary
 
