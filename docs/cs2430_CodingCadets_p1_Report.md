@@ -47,9 +47,7 @@ Another argument against using comparisons is that because not all sorting algor
 Comparison counts can be great for comparing an algorithm to itself. This is primarily useful in two cases:
 
 1. Relating an algorithm's performance to the input data it operates on.
-    - This is examined in the analysis portion of this document.
 2. Relating an algorithm's performance for small values of $N$ to its performance for large values of $N$.
-    - This is examined in the profiling results and analysis that I performed above.
 
 ### Why Permutations?
 
