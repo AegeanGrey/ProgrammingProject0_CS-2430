@@ -629,6 +629,7 @@ To prevent bias towards one algorithm, we included every possible ordering of th
 
 ---
 
+
 #### 8 Elements - 40320 Permutations
 
 **Average Case:**
@@ -851,47 +852,53 @@ To prevent bias towards one algorithm, we included every possible ordering of th
 
 ## Analysis
 
-### 1. Estimated Big-O, Big-Ω, and Big-Θ:
+### Estimated Big-O, Big-Ω, and Big-Θ:
 
-#### Heapsort:
+#### Overview Table:
 
-Big-O: O(nlogn) - Linearithmic
+| Sort Algorithm |    Big-$\Omega$    |    Big-$\Theta$    |    Big-$O$    |
+|:--------------:|:------------------:|:------------------:|:-------------:|
+|    Heapsort    | $\Omega(n\log{n})$ | $\Theta(n\log{n})$ | $O(n\log{n})$ |
+|   Mergesort    | $\Omega(n\log{n})$ | $\Theta(n\log{n})$ | $O(n\log{n})$ |
+|   Quicksort    | $\Omega(n\log{n})$ | $\Theta(n\log{n})$ |   $O(n^2)$    |
+|   Shakersort   |    $\Omega(n)$     |   $\Theta(n^2)$    |   $O(n^2)$    |
 
-Big-Ω: O(nlogn) - Linearithmic
 
-Big-Θ: O(nlogn) - Linearithmic
+#### Reasoning: 
+##### Heapsort
 
-Reasoning: 
+- **$\Omega(n \log n)$ Best Case:** Building a max-heap takes $O(n)$ time. Even if all elements are identical or ideal, extracting the root and calling `heapify` $n-1$ times requires traversing down the binary tree height of $\lfloor \log_2 k \rfloor$ at each step, yielding a lower bound of $\Omega(n \log n)$.
+    
+- **$\Theta(n \log n)$ Average Case:** For a random permutation, each extracted element must sink down near the bottom of the heap during restoration, performing $\approx \log_2 k$ comparisons per element. The sum $\sum_{k=1}^{n} \log_2 k = \log_2(n!) = \Theta(n \log n)$.
+    
+- **$O(n \log n)$ Worst Case:** The tree height is strictly bounded by $\lfloor \log_2 n \rfloor$. Because each of the $n$ extractions performs at most $2 \lfloor \log_2 n \rfloor$ comparisons during `sift-down`, total runtime never exceeds $O(n \log n)$.
+    
 
-#### Mergesort:
+##### Mergesort
 
-Big-O: O(nlogn) - Linearithmic
+- **$\Omega(n \log n)$ Best Case:** Mergesort unconditionally divides the array into two halves until single-element subproblems remain (a tree of depth $\lceil \log_2 n \rceil$). Even on sorted input, merging two halves of size $k/2$ requires at least $k/2$ comparisons, giving $\Omega(n \log n)$.
+    
+- **$\Theta(n \log n)$ Average Case:** By the Master Theorem, the recurrence $T(n) = 2T(n/2) + \Theta(n)$ falls into Case 2 ($f(n) = \Theta(n^{\log_2 2})$), which evaluates to $\Theta(n \log n)$.
+    
+- **$O(n \log n)$ Worst Case:** Merging two sorted arrays of combined size $k$ takes at most $k - 1$ comparisons. Summing the work across all $\log_2 n$ levels of the recursion tree yields an absolute upper bound of $O(n \log n)$.
+    
 
-Big-Ω: O(nlogn) - Linearithmic
+##### Quicksort
 
-Big-Θ: O(nlogn) - Linearithmic
+- **$\Omega(n \log n)$ Best Case:** Occurs when the pivot choice splits the array into two equal halves at every step ($q = \lfloor n/2 \rfloor$). The recurrence $T(n) = 2T(n/2) + O(n)$ yields an optimal lower bound of $\Omega(n \log n)$.
+    
+- **$\Theta(n \log n)$ Average Case:** Assuming a uniform distribution over pivot choices ($P(q) = 1/n$), the average depth of the recursion tree remains logarithmic ($2 \ln n \approx 1.39 \log_2 n$), giving an average tight bound of $\Theta(n \log n)$.
+    
+- **$O(n^2)$ Worst Case:** Occurs when the pivot is consistently the minimum or maximum element (e.g., sorted array with first/last element chosen as pivot). The recurrence degrades to $T(n) = T(n - 1) + O(n)$, yielding a summation $\sum_{i=1}^{n} i = \frac{n(n+1)}{2} = O(n^2)$.
+    
 
-Reasoning: 
+##### Shakersort
 
-#### Quicksort:
-
-Big-O: O(n^2) - Quadratic
-
-Big-Ω: O(nlogn) - Linearithmic
-
-Big-Θ: O(nlogn) - Linearithmic
-
-Reasoning: 
-
-#### Shakersort:
-
-Big-O: O(n^2) - Linearithmic
-
-Big-Ω: Ω(n) - Linear
-
-Big-Θ: Θ(n^2) - Linearithmic
-
-Reasoning: 
+- **$\Omega(n)$ Best Case:** Shakersort is a bidirectional variation of Bubble Sort. On an already sorted array, a single forward pass makes $n - 1$ comparisons, detects zero swaps, and terminates early via its boolean swap flag in $\Omega(n)$ time.
+    
+- **$\Theta(n^2)$ Average Case:** On a random permutation, the expected number of inverted pairs (inversions) is $\frac{n(n - 1)}{4}$. Because adjacent swaps only eliminate 1 inversion per comparison, the average total operations remain quadratic: $\Theta(n^2)$.
+    
+- **$O(n^2)$ Worst Case:** On a reverse-sorted array, every adjacent pair is an inversion ($\frac{n(n - 1)}{2}$ inversions). The algorithm requires $n/2$ full double-passes of $O(n)$ comparisons each, yielding an upper bound of $O(n^2)$.
 
 ### Best and Worst Case Sensitivity
 
@@ -899,7 +906,24 @@ Looking at the results tables, shakersort and mergesort are the most stable algo
 
 This means that some algorithms are more divergent than others. Shakersort is the least divergent because it does not change at all what it does based on the values of the numbers. Quicksort is the most divergent because its pivot, its entire approach to sorting, is based on the value at a given position.
 
-### Number of Comparisons for $N=12$
+### Predicted number of comparisons for $N=12$
+
+| **Algorithm**  | **C(4) (Measured)** | **C(8) (Measured)** | **Empirical Growth Exponent (k)** | **C(12) (Projected )** |
+| -------------- | ------------------- | ------------------- | --------------------------------- | ---------------------- |
+| **Mergesort**  | $4.67$              | $15.73$             | $1.752$                           | **$32.01$**            |
+| **Quicksort**  | $7.17$              | $21.92$             | $1.612$                           | **$42.14$**            |
+| **Heapsort**   | $8.50$              | $27.81$             | $1.710$                           | **$55.63$**            |
+| **Shakersort** | $15.00$             | $50.00$             | $1.737$                           | **$101.12$**           |
+
+#### Formulas used to predict results:
+
+| **Variable**     | **Description**                                           |
+| ---------------- | --------------------------------------------------------- |
+| $n_1, n_2$       | Initial baseline input sizes ($n_1 = 4$, $n_2 = 8$)       |
+| $n_3$            | Projection target size ($n_3 = 12$)                       |
+| $C(n_1), C(n_2)$ | Measured comparison counts at input sizes $n_1$ and $n_2$ |
+| $C(n_3)$         | Projected comparison count at target input size $n_3$     |
+| $k$              | Empirical Growth Exponenet                                |
 
 ### Algorithm Performance Comparison
 
@@ -907,6 +931,22 @@ The best performing algorithm by number of comparisons is mergesort. Mergesort p
 
 > If examining mergesort in the profiler, mergesort consistently performs the worst, until it is surpassed by shakersort at sufficiently high values of $N$. The profiler reveals that for $N\in{4,6,8}$, heapsort actually performs the best in all cases.
 
+### Why Results May Vary
+
+Our quicksort results may differ from other implementations because we chose the end of the array as a constant pivot point. Other implementations of quicksort may have chosen differently, and this choice can have significant impacts on the efficiency of the implementation. Many other potential differences between our implementations and others' are unrelated to the complexity of the algorithms. Though they may affect performance for a given $N$, they do not change how the algorithm *scales* to larger $N$.
+
+
+$$\text{Step 1: } k = \frac{\log\left(\frac{C(n_2)}{C(n_1)}\right)}{\log\left(\frac{n_2}{n_1}\right)}$$
+$$\text{Step 2: } C(n_3) = C(n_2) \cdot \left(\frac{n_3}{n_2}\right)^k$$
+
+### Algorithm Performance Comparison
+
+
+The best performing algorithm by number of comparisons is mergesort. Mergesort performs the fewest comparisons in every case regardless of $N$.
+
+> If examining mergesort in the profiler, mergesort consistently performs the worst, until it is surpassed by shakersort at sufficiently high values of $N$. The profiler reveals that for $N\in{4,6,8}$, heapsort actually performs the best in all cases.
+
+For a larger N 
 ### Why Results May Vary
 
 Our quicksort results may differ from other implementations because we chose the end of the array as a constant pivot point. Other implementations of quicksort may have chosen differently, and this choice can have significant impacts on the efficiency of the implementation. Many other potential differences between our implementations and others' are unrelated to the complexity of the algorithms. Though they may affect performance for a given $N$, they do not change how the algorithm *scales* to larger $N$.
@@ -925,7 +965,17 @@ I was surprised by mergesort's comparatively horrible performance, and on the co
 
 #### Brayden Graham
 
-Thaddeus Introduced me to Mermaid for making diagrams directly in Markdown, which I see as a great tool that I can implement into both personal and work projects going forward to help me better show and update charts in my documentation more frequently instead of using services like lucidchart. I was introduced to OOP in Python, which I didn't know was possible in that language, since I've avoided Python altogether in favor of lower-level, non-interpreted languages.
+Thaddeus introduced me to Mermaid for creating diagrams directly in Markdown. I also learned about using $\LaTeX$ to display math formulas. Having learned about both tools, I plan to use them going forward for both personal and work projects. They will help me update charts in my documentation more frequently, replacing services like Lucidchart. Additionally, I was introduced to object-oriented programming (OOP) in Python. I was previously unaware that Python supported OOP, as I have generally avoided it in favor of lower-level, compiled languages.
+
+## Sources
+
+Geeks for Geeks' article on *Heap Sort*. Last updated on 5 Feb, 2026. Accessed 17 Sep, 2026. https://www.geeksforgeeks.org/dsa/heap-sort/
+
+Geeks for Geeks' article on *Merge Sort*. Last updated on 6 Aug, 2026. Accessed 16 Sep, 2026. https://www.geeksforgeeks.org/dsa/merge-sort/
+
+Geeks for Geeks' article on *Quick Sort*. Last updated on 5 Aug, 2026. Accessed 23 Sep, 2026. https://www.geeksforgeeks.org/dsa/quick-sort-algorithm/
+
+Geeks for Geeks' article on *Cocktail Sort*. Last updated on 5 Sep, 2023. Accessed 24 Sep, 2026. https://www.geeksforgeeks.org/dsa/cocktail-sort/
 
 ## Sources
 
