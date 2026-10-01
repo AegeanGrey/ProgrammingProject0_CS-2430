@@ -316,7 +316,7 @@ stateDiagram-v2
     }
 ```
 
-If we take the last number of the above array (`3`) as our first `pivot`, we will create two partitions. One containing the numbers that are less than 3 and the other containing all numbers that are greater than `3`:
+If we take the last number of the above array (`3`) as our first `pivot`, we will create two partitions. One containing the numbers that are less than `pivot` and the other containing all numbers that are greater than `3`:
 
 ```mermaid
 stateDiagram-v2
@@ -424,37 +424,14 @@ stateDiagram-v2
         one: 1
         four: 4
         six: 6
-    }
-    
-    Pivot --> Partition1: Nums < 3
-    Pivot --> Partition2: Nums > 3
-```
-
-After the partitions are created, it will repeat the `pivot` process again for each partition creating multiple branches to find the proper sorting order.
-
-```mermaid
-stateDiagram-v2
-    
-    state "None" as none1
-    state "None" as none2
-    state "None" as none3
-    
-    state "5" as five1
-    state "5" as five2
-    state "4" as four1
-    
-    state Pivot {
         three: 3
-    }
-    
-    state Partition1 {
         two: 2
         zero: 0
     }
-	Pointer --> five
-	Next --> one
-	Note: is 5 > 1?
-	class Note note
+    Pointer --> five
+    Next --> one
+    Note: is 5 > 1?
+    class Note note
 ```
 
 If we take the above array and plug it into shakersort, our `pointer` will perform a forward pass by reading the array from left to right with `pointer` starting from the first item.
