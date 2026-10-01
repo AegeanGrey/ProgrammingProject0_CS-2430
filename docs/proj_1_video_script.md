@@ -10,8 +10,19 @@ At this point, the only remaining subarray contains all the elements in their so
 
 Heapsort treats the array as a heap where each element $i$'s children are located at $2i+1$ and $2i+2$.
 
-The first step it takes is to convert the heap into a max heap in which the largest element is at the top of the heap. This 'heapification' process exchanges each parent with the larger of its children if that child is also larger than the parent. This starts at the bottom of the heap and works its way up, pushing the largest values to the top.
+The algorithm begins by building a max heap. This 'max heapification' process forces each parent to be larger than either of its children.
 
-These next steps are repeated until the unsorted array is empty: First, the largest element is removed from the heap and placed at the beginning of the result array. Then the new head is heapified as described above. If any swap was performed, then the new child is also heapified until we reach the bottom of the tree or no more swaps happen.
+Until the heap is empty:
+
+1. Place the top element at the beginning of the result array.
+2. Heapify, only affecting parts of the heap that change.
 
 When the unsorted array is empty, the result array contains the elements in sorted order.
+
+# Permutation Generator
+
+Permutations of the first $N$ integers are generated using `itertools.permutations(range(N))`. This is done in the `_analyze()` function in `main.py`.
+
+# Comparison Counting in Mergesort
+
+Mergesort uses the same method for counting comparisons as the other algorithms. It uses one of the `SortingAlgorithm.compare*()` which return the result of the comparison and increment an internal counter. This counter is read back after the sort is finished to determine the total number of comparisons performed. In the case of mergesort, comparisons only happen when merging subarrays.
