@@ -855,41 +855,41 @@ To prevent bias towards one algorithm, we included every possible ordering of th
 
 #### Heapsort:
 
-Big-O: 
+Big-O: O(nlogn) - Linearithmic
 
-Big-Ω: 
+Big-Ω: O(nlogn) - Linearithmic
 
-Big-Θ: 
+Big-Θ: O(nlogn) - Linearithmic
 
 Reasoning: 
 
-#### Mergsort:
+#### Mergesort:
 
-Big-O: 
+Big-O: O(nlogn) - Linearithmic
 
-Big-Ω: 
+Big-Ω: O(nlogn) - Linearithmic
 
-Big-Θ: 
+Big-Θ: O(nlogn) - Linearithmic
 
 Reasoning: 
 
 #### Quicksort:
 
-Big-O: 
+Big-O: O(n^2) - Quadratic
 
-Big-Ω: 
+Big-Ω: O(nlogn) - Linearithmic
 
-Big-Θ: 
+Big-Θ: O(nlogn) - Linearithmic
 
 Reasoning: 
 
-#### Shackersort:
+#### Shakersort:
 
-Big-O: 
+Big-O: O(n^2) - Linearithmic
 
-Big-Ω: 
+Big-Ω: Ω(n) - Linear
 
-Big-Θ: 
+Big-Θ: Θ(n^2) - Linearithmic
 
 Reasoning: 
 
