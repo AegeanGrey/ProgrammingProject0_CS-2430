@@ -325,8 +325,11 @@ The initial starting index for `pointer` will be the first element of the array,
 
 ```mermaid
 stateDiagram-v2
-    direction LR
+	classDef note fill:#fff4b1
+
+    direction TB
     state Array {
+	    direction LR
         five: 5
         one: 1
         four: 4
@@ -335,60 +338,39 @@ stateDiagram-v2
         two: 2
         zero: 0
     }
+	Pointer --> five
+	Next --> one
+	Note: is 5 > 1?
+	class Note note
 ```
 
 If we take the above array and plug it into shakersort, our `pointer` will perform a forward pass by reading the array from left to right with `pointer` starting from the first item.
 
 Our `pointer` is comparing the value of its current position (`5`) to the next value (`2`) to see if our `pointer` is greater than the next element.
 
-```mermaid
-stateDiagram-v2
-    direction LR
-    state Pointer { 
-        five: 5
-    }
-    
-    state Next {
-        one: 1 
-    }   
-    
-    Pointer --> Next: is 5 > 1?
-```
-
 Since `5` is greater than `2` we will swap both elements, increment our `pointer` to advance to the next comparison.
-
-```mermaid
-stateDiagram-v2
-    direction LR
-    one: 1
-    
-    state Pointer {
-        five: 5
-    }
-    
-    state Next {
-        four: 4
-    }
-    
-    direction LR
-    one --> Pointer: Swap
-    Pointer --> Next: is 5 > 4?
-```
 
 We will repeat this process of each element until `pointer` finds the largest value and moves it to the end of the array (in this case `6` should be at the end of the array):
 
 ```mermaid
 stateDiagram-v2
-    direction LR
+	classDef note fill:#fff4b1
+
+    direction TB
     state Array {
+	    direction LR
         one: 1
-        four: 4
         five: 5
+        four: 4
         three: 3
         two: 2
         zero: 0
         six: 6
     }
+	Pointer --> five
+	Next --> four
+	Note: is 5 > 4?
+	class Note note
 ```
 
 We then update our `pointer` and its starting position to be the second to last element of the array, creating what we describe as a 'wall' to not venture past already sorted elements. 
