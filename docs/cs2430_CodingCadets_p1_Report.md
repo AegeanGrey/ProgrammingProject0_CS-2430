@@ -925,28 +925,15 @@ This means that some algorithms are more divergent than others. Shakersort is th
 | $C(n_3)$         | Projected comparison count at target input size $n_3$     |
 | $k$              | Empirical Growth Exponenet                                |
 
-### Algorithm Performance Comparison
-
-The best performing algorithm by number of comparisons is mergesort. Mergesort performs the fewest comparisons in every case regardless of $N$.
-
-> If examining mergesort in the profiler, mergesort consistently performs the worst, until it is surpassed by shakersort at sufficiently high values of $N$. The profiler reveals that for $N\in{4,6,8}$, heapsort actually performs the best in all cases.
-
-### Why Results May Vary
-
-Our quicksort results may differ from other implementations because we chose the end of the array as a constant pivot point. Other implementations of quicksort may have chosen differently, and this choice can have significant impacts on the efficiency of the implementation. Many other potential differences between our implementations and others' are unrelated to the complexity of the algorithms. Though they may affect performance for a given $N$, they do not change how the algorithm *scales* to larger $N$.
-
-
 $$\text{Step 1: } k = \frac{\log\left(\frac{C(n_2)}{C(n_1)}\right)}{\log\left(\frac{n_2}{n_1}\right)}$$
 $$\text{Step 2: } C(n_3) = C(n_2) \cdot \left(\frac{n_3}{n_2}\right)^k$$
-
 ### Algorithm Performance Comparison
-
 
 The best performing algorithm by number of comparisons is mergesort. Mergesort performs the fewest comparisons in every case regardless of $N$.
 
 > If examining mergesort in the profiler, mergesort consistently performs the worst, until it is surpassed by shakersort at sufficiently high values of $N$. The profiler reveals that for $N\in{4,6,8}$, heapsort actually performs the best in all cases.
 
-For a larger N 
+For a larger $N$ the 
 ### Why Results May Vary
 
 Our quicksort results may differ from other implementations because we chose the end of the array as a constant pivot point. Other implementations of quicksort may have chosen differently, and this choice can have significant impacts on the efficiency of the implementation. Many other potential differences between our implementations and others' are unrelated to the complexity of the algorithms. Though they may affect performance for a given $N$, they do not change how the algorithm *scales* to larger $N$.
@@ -965,17 +952,7 @@ I was surprised by mergesort's comparatively horrible performance, and on the co
 
 #### Brayden Graham
 
-Thaddeus introduced me to Mermaid for creating diagrams directly in Markdown. I also learned about using $\LaTeX$ to display math formulas. Having learned about both tools, I plan to use them going forward for both personal and work projects. They will help me update charts in my documentation more frequently, replacing services like Lucidchart. Additionally, I was introduced to object-oriented programming (OOP) in Python. I was previously unaware that Python supported OOP, as I have generally avoided it in favor of lower-level, compiled languages.
-
-## Sources
-
-Geeks for Geeks' article on *Heap Sort*. Last updated on 5 Feb, 2026. Accessed 17 Sep, 2026. https://www.geeksforgeeks.org/dsa/heap-sort/
-
-Geeks for Geeks' article on *Merge Sort*. Last updated on 6 Aug, 2026. Accessed 16 Sep, 2026. https://www.geeksforgeeks.org/dsa/merge-sort/
-
-Geeks for Geeks' article on *Quick Sort*. Last updated on 5 Aug, 2026. Accessed 23 Sep, 2026. https://www.geeksforgeeks.org/dsa/quick-sort-algorithm/
-
-Geeks for Geeks' article on *Cocktail Sort*. Last updated on 5 Sep, 2023. Accessed 24 Sep, 2026. https://www.geeksforgeeks.org/dsa/cocktail-sort/
+Thaddeus Introduced me to Mermaid for making diagrams directly in Markdown, which I see as a great tool that I can implement into both personal and work projects going forward to help me better show and update charts in my documentation more frequently instead of using services like lucidchart. I was introduced to OOP in Python, which I didn't know was possible in that language, since I've avoided Python altogether in favor of lower-level, non-interpreted languages.
 
 ## Sources
 
