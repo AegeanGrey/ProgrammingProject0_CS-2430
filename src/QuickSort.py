@@ -6,6 +6,14 @@
 # Primary Author: Todd Dharni                  #
 ################################################
 
+"""
+    Quicksort divides and conquers
+    Selects an element as a pivot and partitions
+    the given array around the picked pivot
+    by placing the pivot in its correct position in
+    the sorted array
+"""
+
 # Create a pivot point
 # Hoare's Partition
 # (consider the first element in a list as the pivot)
@@ -33,25 +41,18 @@ import SortingAlgorithm
 import collections
 
 # class for QuickSort to be used in main.py
-"""
-    Quicksort divides and conquers
-    Selects an element as a pivot and partitions
-    the given array around the picked pivot
-    by placing the pivot in its correct position in
-    the sorted array
-"""
 class QuickSort(SortingAlgorithm.SortingAlgorithm):
 
     def sort(self, a: collections.abc.MutableSequence[int]) -> collections.abc.Sequence[int]:
 
-        # totalNums = 4
+        # totalNums = 8
         totalNums = len(a)
 
         # quickSort function call to pass through the following
         # -----------------------------------------------------
         # array : arrayOfNums
         # start : 0
-        #  end  : totalNums - 1 (3)
+        #  end  : totalNums - 1 (7)
         self._quickSort(a, 0, totalNums - 1)
 
         # return the final value for the quick sorted array
@@ -66,7 +67,7 @@ class QuickSort(SortingAlgorithm.SortingAlgorithm):
 
         # Base Case
         # ---------
-        # if end point is less than or equal to start then stop the recursive function
+        # if end point is less than start then stop the recursive function
         if end <= start:
             return
 
