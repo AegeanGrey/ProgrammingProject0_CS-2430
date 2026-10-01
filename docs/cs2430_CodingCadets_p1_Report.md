@@ -927,13 +927,15 @@ This means that some algorithms are more divergent than others. Shakersort is th
 
 $$\text{Step 1: } k = \frac{\log\left(\frac{C(n_2)}{C(n_1)}\right)}{\log\left(\frac{n_2}{n_1}\right)}$$
 $$\text{Step 2: } C(n_3) = C(n_2) \cdot \left(\frac{n_3}{n_2}\right)^k$$
+
 ### Algorithm Performance Comparison
 
 The best performing algorithm by number of comparisons is mergesort. Mergesort performs the fewest comparisons in every case regardless of $N$.
 
 > If examining mergesort in the profiler, mergesort consistently performs the worst, until it is surpassed by shakersort at sufficiently high values of $N$. The profiler reveals that for $N\in{4,6,8}$, heapsort actually performs the best in all cases.
 
-For a larger $N$ the 
+As $n$ scales, the empirical exponent $k$ for Mergesort, Heapsort, and Quicksort will fall from our small-sample values ($\sim 1.6\text{-}1.75$) toward $1.0$ as logarithmic growth dominates, while Shakersort's $k$ will rise from $\sim 1.74$ toward $2.0$ as quadratic comparisons drown out lower-order overhead.
+
 ### Why Results May Vary
 
 Our quicksort results may differ from other implementations because we chose the end of the array as a constant pivot point. Other implementations of quicksort may have chosen differently, and this choice can have significant impacts on the efficiency of the implementation. Many other potential differences between our implementations and others' are unrelated to the complexity of the algorithms. Though they may affect performance for a given $N$, they do not change how the algorithm *scales* to larger $N$.
