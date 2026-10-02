@@ -927,11 +927,11 @@ To prevent bias towards one algorithm, we included every possible ordering of th
 #### Overview Table:
 
 | Sort Algorithm |     Big-$\Omega$     |     Big-$\Theta$     |     Big-$O$     |
-|:--------------:|:--------------------:|:--------------------:|:---------------:|
+| :------------: | :------------------: | :------------------: | :-------------: |
 |    Heapsort    | $\Omega(n \log_2 n)$ | $\Theta(n \log_2 n)$ | $O(n \log_2 n)$ |
 |   Mergesort    | $\Omega(n \log_2 n)$ | $\Theta(n \log_2 n)$ | $O(n \log_2 n)$ |
 |   Quicksort    | $\Omega(n \log_2 n)$ | $\Theta(n \log_2 n)$ |    $O(n^2)$     |
-|   Shakersort   |     $\Omega(n)$      |    $\Theta(n^2)$     |    $O(n^2)$     |
+|   Shakersort   |    $\Omega(n^2)$     |    $\Theta(n^2)$     |    $O(n^2)$     |
 
 
 #### Reasoning
@@ -961,7 +961,7 @@ To prevent bias towards one algorithm, we included every possible ordering of th
 
 ##### Shakersort
 
-- **$\Omega(n)$ Best Case:** Shakersort is a bidirectional variation of Bubble Sort. On an already sorted array, a single forward pass makes $n - 1$ comparisons, detects zero swaps, and terminates early via its boolean swap flag in $\Omega(\frac{1}{4}n^2)$ time.
+- **$\Omega(n^2)$ Best Case:** Shakersort is a bidirectional variation of Bubble Sort. On an already sorted array, this implementation performs complete alternating forward and backward passes until the boundary walls collapse, making quadratic comparisons and detecting zero swaps in $\Omega(n^2)$ time.
     
 - **$\Theta(n^2)$ Average Case:** On a random permutation, the expected number of inverted pairs (inversions) is $\frac{n(n - 1)}{4}$. Because adjacent swaps only eliminate 1 inversion per comparison, the average total operations remain quadratic: $\Theta(n^2)$.
     
