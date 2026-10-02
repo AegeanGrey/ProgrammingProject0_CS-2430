@@ -20,24 +20,23 @@ We use the compare most and compare least functions in SortingAlgorithm to track
 
 ### Heapsort
 
-Heapsort treats the array as a heap where each element $i$'s children are located at $2i+1$ and $2i+2$.
+Heapsort treats the array as a max heap. The 'max heapification' process forces each parent to be larger than either of its children.
 
-The algorithm begins by building a max heap. This 'max heapification' process forces each parent to be larger than either of its children.
+Until the heap is empty, the algorithm:
 
-Until the heap is empty:
-
-1. Place the top element at the beginning of the result array.
-2. Heapify, only affecting parts of the heap that change.
+1. Places the top element at the beginning of the result array.
+2. Heapifies, only affecting parts of the heap that change.
 
 When the unsorted array is empty, the result array contains the elements in sorted order.
 
 ### Quicksort
 
-
+Creates branching permutations of the original array based off a `pivot` and orders the results of each permutation `pivot` from left to right
 
 ### Shakersort
 
-
+Also known as cocktailsort, uses `counter` to keep track of it's position in the array and takes the starting element to compare throughout (while reading from left to right) to sort the highest individual value to the right side of the array, 
+and doing the opposite when moving in reverse (going from right to left) to sort the smallest individual value(s)
 
 ### Mergesort (Transition to showcase)
 
@@ -49,8 +48,8 @@ At this point, the only remaining subarray contains all the elements in their so
 
 ### Comparison Counting in Mergesort
 
-Mergesort uses the same method for counting comparisons as the other algorithms. It uses one of the `SortingAlgorithm.compare*()` which return the result of the comparison and increment an internal counter. This counter is read back after the sort is finished to determine the total number of comparisons performed. In the case of mergesort, comparisons only happen when merging subarrays.
+Mergesort uses the same method for counting comparisons as the other algorithms. It uses one of the `SortingAlgorithm.compare` functions which return the result of the comparison and increments an internal counter. This counter is read back after the sort is finished to determine the total number of comparisons performed. In the case of mergesort, comparisons only happen when merging subarrays.
 
 # Conclusion
 
-Based on our testing and analysis, we conclude that, by measure of comparisons, mergesort is the most efficient algorithm of those tested. Furthermore, we predict that mergesort will scale very well to large values of $N$. From our observations, we can conclude that the data set size and the initial order directly affect the best sorting algorithm for the required use case.
+Based on our testing and analysis, we conclude that, by measure of comparisons, mergesort is the most efficient algorithm of those tested. Furthermore, we predict that mergesort will scale very well to large values of $N$. From our observations, we can conclude that the data set ***size*** and the initial order will directly affect the best sorting algorithm for the required use case. Finally, we believe that using the `itertools.permutations` python library was more effective form of streamlining consistency amongst our sorting algorithms and their results.  
