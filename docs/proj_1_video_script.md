@@ -26,3 +26,7 @@ Permutations of the first $N$ integers are generated using `itertools.permutatio
 # Comparison Counting in Mergesort
 
 Mergesort uses the same method for counting comparisons as the other algorithms. It uses one of the `SortingAlgorithm.compare*()` which return the result of the comparison and increment an internal counter. This counter is read back after the sort is finished to determine the total number of comparisons performed. In the case of mergesort, comparisons only happen when merging subarrays.
+
+# Conclusion
+
+Based on our testing and analysis, we conclude that, by measure of comparisons, mergesort is the most efficient algorithm of those tested. Furthermore, we predict that mergesort will scale very well to large values of $N$.
