@@ -409,9 +409,25 @@ stateDiagram-v2
 
 Shakersort is a sorting algorithm that will read individual elements of an array and sorts through them one at a time; Moving the largest elements it can find to the right side of the array and the smallest elements to the left.
 
-To do this, we establish a `pointer` variable which will keep track of its current position in the array via the index of an element. 
+We'll be using this sample unordered array to demonstrate how shakersort functions:
 
-The initial starting index for `pointer` will be the first element of the array, and it will compare the value of `pointer` to the value ahead of `pointer`. 
+```mermaid
+stateDiagram-v2
+    direction LR
+    state Array {
+        five: 5
+        one: 1
+        four: 4
+        six: 6
+        three: 3
+        two: 2
+        zero: 0
+    }
+```
+
+We first establish a `pointer` variable which will keep track of its current position in the array via the index of an element. 
+
+The initial starting index for `pointer` will be the first element of the array, and it will compare the value of `pointer` to the value ahead of `pointer`.
 
 ```mermaid
 stateDiagram-v2
@@ -434,13 +450,9 @@ stateDiagram-v2
     class Note note
 ```
 
-If we take the above array and plug it into shakersort, our `pointer` will perform a forward pass by reading the array from left to right with `pointer` starting from the first item.
-
 Our `pointer` is comparing the value of its current position (`5`) to the next value (`2`) to see if our `pointer` is greater than the next element.
 
 Since `5` is greater than `2` we will swap both elements, increment our `pointer` to advance to the next comparison.
-
-We will repeat this process of each element until `pointer` finds the largest value and moves it to the end of the array (in this case `6` should be at the end of the array):
 
 ```mermaid
 stateDiagram-v2
@@ -461,6 +473,22 @@ stateDiagram-v2
 	Next --> four
 	Note: is 5 > 4?
 	class Note note
+```
+
+We will repeat this process of each element until `pointer` finds the largest value and moves it to the end of the array (in this case `6` should be at the end of the array):
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state Array {
+        one: 1
+        four: 4
+        five: 5
+        three: 3
+        two: 2
+        zero: 0
+        six: 6
+    }
 ```
 
 We then update our `pointer` and its starting position to be the second to last element of the array, creating what we describe as a 'wall' to not venture past already sorted elements. 
