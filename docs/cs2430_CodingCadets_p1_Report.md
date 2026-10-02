@@ -1013,11 +1013,9 @@ Our quicksort results may differ from other implementations because we chose the
 
 ## Conclusion
 
+### Todd Dharni
 
-
-### Reflection
-
-#### Todd Dharni
+This project felt like a big undertaking going into it. I enjoyed being able to keep track of items, deliverables and differentiating needs compared to wants for reaching our end goal as well as seeing the scope of what python at a larger level is capable of achieving.
 
 To say Thaddeus was a team player would be an understatement, he was key in determining the overall structure of our program and assisting with implementing the sorting algorithms I worked on.
 
@@ -1025,12 +1023,10 @@ He expressed to me the importance of simplification when I was writing out code 
 
 Once I was able to recognize this, it greatly supported not only my outcome for shakersort, but also my understanding of where things went awry in my approach.
 
-This project was a big undertaking going into it. I enjoyed being able to keep track of items, deliverables and differentiating needs compared to wants for reaching our end goal. 
-
 Brayden coming into the project helped out significantly as well with his contributions to reporting and being flexible with meeting up together which I feel has played a very important part in our group's success.
 
 
-#### Thaddeus Schelp
+### Thaddeus Schelp
 
 Todd introduced me to the idea of 'Who does What by When'. This is a useful way to think about organizing tasks and divvying them up. Making sure that you are actively aware of each of these Ws can help drive a team and keep them coordinated on tasks.
 
@@ -1038,7 +1034,7 @@ This project also got me thinking more critically about performance analysis usi
 
 I was surprised by mergesort's comparatively horrible performance, and on the contrary, heapsort's comparatively stellar performance.
 
-#### Brayden Graham
+### Brayden Graham
 
 Thaddeus introduced me to Mermaid for creating diagrams and $\LaTeX$ for formatting formulas directly in Markdown. Both are great tools that I can implement into personal and work projects going forward. They will help me better present charts and formulas in my documentation rather than embedding images from services like Lucidchart, while also making it easier to update and maintain. In this project, I was also introduced to OOP in Python, which I didn't know was possible, as I had previously avoided Python in favor of lower-level, non-interpreted languages.
 
