@@ -1013,7 +1013,22 @@ Our quicksort results may differ from other implementations because we chose the
 
 ## Conclusion
 
+
+
 ### Reflection
+
+#### Todd Dharni
+
+To say Thaddeus was a team player would be an understatement, he was key in determining the overall structure of our program and assisting with implementing the sorting algorithms I worked on.
+
+He expressed to me the importance of simplification when I was writing out code for shakersort. He showed me the difference between declarative vs. imperative programming paradigms and helped clear up my misunderstanding when writing in python but keeping OOP in mind.
+
+Once I was able to recognize this, it greatly supported not only my outcome for shakersort, but also my understanding of where things went awry in my approach.
+
+This project was a big undertaking going into it. I enjoyed being able to keep track of items, deliverables and differentiating needs compared to wants for reaching our end goal. 
+
+Brayden coming into the project helped out significantly as well with his contributions to reporting and being flexible with meeting up together which I feel has played a very important part in our group's success.
+
 
 #### Thaddeus Schelp
 
