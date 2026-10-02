@@ -29,4 +29,4 @@ Mergesort uses the same method for counting comparisons as the other algorithms.
 
 # Conclusion
 
-Based on our testing and analysis, we conclude that, by measure of comparisons, mergesort is the most efficient algorithm of those tested. Furthermore, we predict that mergesort will scale very well to large values of $N$.
+Based on our testing and analysis, we conclude that, by measure of comparisons, mergesort is the most efficient algorithm of those tested. Furthermore, we predict that mergesort will scale very well to large values of $N$. From our observations, we can conclude that the data set size and the initial order will directly affect the best sorting algorithm for the required use case. 
