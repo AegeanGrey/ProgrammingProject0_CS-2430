@@ -12,7 +12,7 @@ Permutations of the first $N$ integers are generated using `itertools.permutatio
 
 ## Show Comparison Counter 
 
-Explain functionality and implementation or where it's applied 
+We use the compare most and compare least functions in SortingAlgorithm to track the number of comparisons.
 
 ## Algorithm Summaries
 
@@ -25,7 +25,6 @@ Heapsort treats the array as a heap where each element $i$'s children are locate
 The algorithm begins by building a max heap. This 'max heapification' process forces each parent to be larger than either of its children.
 
 Until the heap is empty:
-
 
 1. Place the top element at the beginning of the result array.
 2. Heapify, only affecting parts of the heap that change.
