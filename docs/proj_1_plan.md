@@ -90,7 +90,8 @@ UML/Structure Diagram (<a href="https://github.com/AegeanGrey/ProgrammingProject
 
 ### 6 Verification Plan
 
-
+- Uint test to ensure all algorithms actually fully sort the arrays, and report the comparisons they perform.
+- Perform multiple runs of the program to ensure no variance in reported comparison counts between runs (all algorithms are deterministic).
 
 ### 7 Risks/Blockers
 
@@ -98,4 +99,4 @@ UML/Structure Diagram (<a href="https://github.com/AegeanGrey/ProgrammingProject
 
 ### 8 Update Log
 
-
+https://github.com/AegeanGrey/ProgrammingProject0_CS-2430/commits/main/
