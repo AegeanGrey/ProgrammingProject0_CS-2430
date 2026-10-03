@@ -25,14 +25,14 @@ Brayden Graham &emsp; | &emsp; Verification Lead
 
 ### 4.) Milestones
 
-<p>--- Required Deliverables (<b>In Progress</b>) ---<br>
-Team Report (in progress)<br>
-Team Code Package (near complete)<br>
-Team Screencast Video (planned for week 3)<br>
+<p>--- Required Deliverables (<b>complete</b>) ---<br>
+Team Report (done)<br>
+Team Code Package (done)<br>
+Team Screencast Video (done)<br>
 <br>
---- Programming Language & Documentation Requirements (<b>Near Complete</b>) ---<br>
+--- Programming Language & Documentation Requirements (<b>complete</b>) ---<br>
 Primary Language: Python (done)<br>
-Team Information Comment Per Source File (in progress)<br>
+Team Information Comment Per Source File (done)<br>
 <br>
 --- Programming Requirments (<b>Completed</b>) ---<br>
 <br>
@@ -49,17 +49,13 @@ Output Structure (done)<br>
 - Test Driver & Performance Metrics -<br>
 - Experimental Runs & Data Collection -<br>
 <br>
---- Team Reporting Requirements (<b>In Progress</b>) ---<br>
-This is planned for Week 3<br>
+--- Team Reporting Requirements (<b>complete</b>) ---<br>
 <br>
---- Questions to Address in Your Report (<b>Not Started</b>) ---<br>
-Group Discussion for Week 3<br>
+--- Questions to Address in Your Report (<b>complete</b>) ---<br>
 <br>
---- Screencast Requirements --- (<b>In Progress</b>)<br>
-This is planned for Week 3<br>
+--- Screencast Requirements --- (<b>complete</b>)<br>
 <br>
---- Submission Notes --- (<b>In Progress</b>)<br>
-Will be finalized before submission<br>
+--- Submission Notes --- (<b>complete</b>)<br>
 </p>
 
 ### 5.) Task Status
@@ -76,13 +72,14 @@ Experimental Runs and Data Collection (<a href="https://github.com/AegeanGrey/Pr
 Team Reporting Layout (in progress) <br>
 <br>
 --- Todd Dharni --- <br>
-Project Planning / Task Delegation (in progress)<br>
+Project Planning / Task Delegation (completed)<br>
 Generate GitHub Repository (<a href="https://github.com/AegeanGrey/ProgrammingProject0_CS-2430">done</a>)<br>
 QuickSort (<a href="https://github.com/AegeanGrey/ProgrammingProject0_CS-2430/commit/26716592373dad2ec2ad18b0559e6755d7589917">done</a>)<br>
 ShakerSort (<a href="https://github.com/AegeanGrey/ProgrammingProject0_CS-2430/commit/172676f9bd148afe5bfb762942c4d7e504288c3d">done</a>)<br>
-Update QS and SS Doc Comments (in progress)<br>
-Documenting / Reporting on QS and SS Algorithms (in progress)<br>
-Video Recording Structure (in progress)<br>
+Update QS and SS Doc Comments (done)<br>
+Documenting / Reporting on QS and SS Algorithms (done)<br>
+Video Recording Structure (done)<br>
+Individual Reflection (done)<br>
 <br>
 --- Brayden Graham --- <br>
 UML/Structure Diagram (<a href="https://github.com/AegeanGrey/ProgrammingProject0_CS-2430/commit/1ef1e78fdf6954b077b7f49d36ecd96b46609f0e">done</a>)<br>
@@ -99,7 +96,9 @@ Indiviual Refelection(<a href="https://github.com/AegeanGrey/ProgrammingProject0
 
 ### 7 Risks/Blockers
 
+Risks we faced were going beyond scope or running off track for our required bare minimums regarding project 1. We addressed this during our team meetings to iron out any discrepancies by constantly referring to project 1's requirements and discussions.
 
+Blockers that we faced was approaching the design for writing out sorting algorithms. An example of this was us trying to avoid using recursion for quicksort in favor of loops, but with most documentation that was found it just made more sense to use recursion in certain cases.
 
 ### 8 Update Log
 
