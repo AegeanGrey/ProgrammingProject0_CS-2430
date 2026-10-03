@@ -86,12 +86,16 @@ Video Recording Structure (in progress)<br>
 <br>
 --- Brayden Graham --- <br>
 UML/Structure Diagram (<a href="https://github.com/AegeanGrey/ProgrammingProject0_CS-2430/commit/1ef1e78fdf6954b077b7f49d36ecd96b46609f0e">done</a>)<br>
+Analysis BigO Calculations (<a href="https://github.com/AegeanGrey/ProgrammingProject0_CS-2430/commit/73d22cb5dfa6f516e0affc0056f0ecc589f70446">done</a>)<br>
+Analysis N=12 Predictions (<a href="https://github.com/AegeanGrey/ProgrammingProject0_CS-2430/commit/95e37ebc9f2826abb0862168adfa4426526b992a">done</a>)
+Indiviual Refelection(<a href="https://github.com/AegeanGrey/ProgrammingProject0_CS-2430/commit/d7b194b730cb46599df951489c5ca96a56fd1c05">done</a>
 </p>
 
 ### 6 Verification Plan
 
 - Uint test to ensure all algorithms actually fully sort the arrays, and report the comparisons they perform.
 - Perform multiple runs of the program to ensure no variance in reported comparison counts between runs (all algorithms are deterministic).
+- Perform multiple runs of the on all our laptops to validate consitant performance.
 
 ### 7 Risks/Blockers
 
