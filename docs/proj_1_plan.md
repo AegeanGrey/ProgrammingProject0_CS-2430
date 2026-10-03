@@ -95,7 +95,7 @@ Indiviual Refelection(<a href="https://github.com/AegeanGrey/ProgrammingProject0
 
 - Uint test to ensure all algorithms actually fully sort the arrays, and report the comparisons they perform.
 - Perform multiple runs of the program to ensure no variance in reported comparison counts between runs (all algorithms are deterministic).
-- Perform multiple runs of the on all our laptops to validate consitant performance.
+- Perform test runs on all of our laptops to validate consistent performance.
 
 ### 7 Risks/Blockers
 
